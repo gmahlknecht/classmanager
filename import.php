@@ -77,7 +77,7 @@ if(!isset($_GET['category']) and !isset($_POST['category'])) {
 	    $passcharsupper="ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 	    $passcharsnumbers="0123456789";
 	    $passcharsspecial=",.-;:_#+*!§$%&/()=?";
-	    $pass=substr(str_shuffle($passcharslower),0,6).substr(str_shuffle($passcharsnumbers),0,2);
+	    $pass=substr(str_shuffle($passcharslower),0,2).substr(str_shuffle($passcharsnumbers),0,6);
 	    $pass=str_shuffle($pass);
 
 	    $insertuser = new stdClass;
