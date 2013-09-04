@@ -72,14 +72,15 @@ if(!isset($_GET['category']) and !isset($_POST['category'])) {
 	    }
 	    $class = $DB->get_record('cohort', array('idnumber'=>$newuser->classe, 'contextid'=>$context->id));
 						
-	    $passlength = 8;
-	    $passcharslower="abcdefghijklmnopqrstuvwxyz";
-	    $passcharsupper="ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-	    $passcharsnumbers="0123456789";
-	    $passcharsspecial=",.-;:_#+*!§$%&/()=?";
-	    $pass=substr(str_shuffle($passcharslower),0,2).substr(str_shuffle($passcharsnumbers),0,6);
-	    $pass=str_shuffle($pass);
-
+	    //$passlength = 8;
+	    //$passcharslower="abcdefghijklmnopqrstuvwxyz";
+	    //$passcharsupper="ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+	    //$passcharsnumbers="0123456789";
+	    //$passcharsspecial=",.-;:_#+*!§$%&/()=?";
+	    //$pass=substr(str_shuffle($passcharslower),0,2).substr(str_shuffle($passcharsnumbers),0,6);
+	    //$pass=str_shuffle($pass);
+	    $pass="Bz@".rand(10000, 99999);
+	    
 	    $insertuser = new stdClass;
 	    $insertuser->auth = 'manual';
 	    $insertuser->confirmed = 1;
