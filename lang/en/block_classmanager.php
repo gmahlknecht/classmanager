@@ -5,7 +5,7 @@
   $string['deleteusersdeletelink'] = 'Delete all users of this class';
   $string['deleteuserspagetitle'] = 'Delete users';
   $string['deleteusersmanydescription'] = 'Delete multiple users of a group';
-  $string['pluginname'] = 'Class Manager Block';
+  $string['pluginname'] = 'Class Manager';
   $string['adminpagetitle'] = 'Class Manager Admin Page';
   $string['manageschools'] = 'Manage Schools';
   $string['adminpagedescription'] = 'Here you can create/edit schools and add Managers.';

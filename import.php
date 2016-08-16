@@ -47,7 +47,7 @@ if(!isset($_GET['category']) and !isset($_POST['category'])) {
 	  $newuser->lastname = ucfirst(strtolower($param[1]));
 	  $newuser->firstname = ucfirst(strtolower($param[2]));
 				
-	  $newuser->mail = trim($param[3]);
+	  $newuser->mail = trim(strtolower($param[3]));
 	  if(
 	     preg_match("/^([a-zA-Z0-9])+([a-zA-Z0-9\._-])*@([a-zA-Z0-9_-])+([a-zA-Z0-9\._-]+)+$/", $newuser->mail)
 	     ) {

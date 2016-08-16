@@ -8,7 +8,7 @@ require_once($CFG->dirroot."/lib/formslib.php");
 require_once($CFG->dirroot.'/enrol/locallib.php');
 require_once($CFG->dirroot.'/enrol/cohort/locallib.php');
 require_once($CFG->dirroot.'/group/lib.php');
-
+require_once($CFG->dirroot.'/lib/coursecatlib.php');
 
 $error = false;
 if(isset($_REQUEST['name'])) {
@@ -94,7 +94,8 @@ foreach($categories as $category) {
 
 
 
-make_categories_list($categorieslist, $parents, 'moodle/course:create');
+#make_categories_list($categorieslist, $parents, 'moodle/course:create');
+$categorieslist  = coursecat::make_categories_list('moodle/course:create');
 
 class createcourse_form extends moodleform {
  
@@ -115,10 +116,10 @@ class createcourse_form extends moodleform {
 			.'</div></div>');
 
 		global $classes;
-		$mform->addElement('select', 'class', get_string('chooseclass', 'block_classmanager'), $classes);
-		$mform->addElement('html', '<div class="fitem"><div class="fititemtitle"></div><div><div class="felement">'
-			.get_string('chooseclassdescription', 'block_classmanager')
-			.'</div></div>');
+//		$mform->addElement('select', 'class', get_string('chooseclass', 'block_classmanager'), $classes);
+//		$mform->addElement('html', '<div class="fitem"><div class="fititemtitle"></div><div><div class="felement">'
+//			.get_string('chooseclassdescription', 'block_classmanager')
+//			.'</div></div>');
 
 		$mform->addElement('submit', 'intro', get_string("submit"));
      } 

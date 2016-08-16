@@ -5,7 +5,7 @@
   $string['deleteusersdeletelink'] = 'Alle Nutzer dieser Klasse l&ouml;schen';
   $string['deleteuserspagetitle'] = 'Nutzer l&ouml;schen';
   $string['deleteusersmanydescription'] = 'Alle Nutzer einer Klasse l&ouml;schen';
-  $string['pluginname'] = 'Class Manager Block';
+  $string['pluginname'] = 'Class Manager';
   $string['adminpagetitle'] = 'Administration der Klassen und Schulen';
   $string['manageschools'] = 'Schulen Verwalten';
   $string['adminpagedescription'] = 'Hier können Sie Schulen erstellen/bearbeiten und ihnen Personen zuordnen, welche diese Benutzer bearbeiten dürfen';

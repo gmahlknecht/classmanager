@@ -81,7 +81,7 @@ class block_classmanager extends block_base {
     }
 	
     if(is_array($edit_courses)) {
-      $c .=  "<img src=\"".$CFG->wwwroot."/theme/image.php?theme=arialist&amp;image=i%2Frestore&amp;rev=312\" class=\"smallicon navicon\" style=\"margin-right: 5px;\"><a href=\"".$CFG->wwwroot."/blocks/classmanager/createcourse.php\">".get_string("createcourse", "block_classmanager")."</a><br>";		
+      $c .=  "<a href=\"".$CFG->wwwroot."/blocks/classmanager/createcourse.php\">".get_string("createcourse", "block_classmanager")."</a><br>";		
     }
 	
 	
@@ -105,21 +105,21 @@ class block_classmanager extends block_base {
 	}
 	}*/
     //	if(count($edit_categories) >0) {
-    $c .= "<br><a href=\"".$CFG->wwwroot."/blocks/mrbs/web/index.php\">Raumbuchungssystem</b>";
+    //$c .= "<br><a href=\"".$CFG->wwwroot."/blocks/mrbs/web/index.php\">Raumbuchungssystem</b>";
     //	}
-    $c .= "<br>";
+    //$c .= "<br>";
     $c .= "<a href=\"".$CFG->wwwroot."/course/\">Kursbereiche anzeigen</a><br>";
     $c .= "<a href=\"".$CFG->wwwroot."/course/view.php?id=1194\">Hilfe und Support</a><br><br>";
 
     //$data = file_get_contents('http://localhost/stats.php');
     //$stats = json_decode($data);	
-    require_once 'statistics.php';
-    $stats = new MoodleStatistics();
+    //require_once 'statistics.php';
+    //$stats = new MoodleStatistics();
 
-    $c .= '<b>Benutzer Statistiken:</b><br>
-	jetzt aktiv: '.$stats->user_access().'<br>
-	in der letzten Stunde aktiv: '.$stats->user_access('hour').'<br>
-	in den letzten 24 Stunden aktiv: '.$stats->user_access('day').'<br>';
+    //$c .= '<b>Benutzer Statistiken:</b><br>
+//	jetzt aktiv: '.$stats->user_access().'<br>
+//	in der letzten Stunde aktiv: '.$stats->user_access('hour').'<br>
+//	in den letzten 24 Stunden aktiv: '.$stats->user_access('day').'<br>';
     //	in den letzten 7 Tagen aktiv: '.$stats->user_access_week.'<br>';
 	
     $this->content->text = $c;

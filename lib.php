@@ -5,7 +5,7 @@ function edit_school($id, $data) {
 	$shortname = $data['short'];
 	$user_id = $data['user'];
 	$group_id = $data['group'];
-	$course_category_id = $data['course_category']
+	$course_category_id = $data['course_category'];
 	
 	//add course category
 	
@@ -17,11 +17,4 @@ function edit_school($id, $data) {
 	
 	
 	//add teacher as courseadmin
-	
-	
-	//
-
-	
-	
-	
-}
+}	
