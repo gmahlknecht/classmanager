@@ -8,7 +8,7 @@ $PAGE->set_pagelayout('mydashboard');
 $PAGE->set_pagetype('my-index');
 $PAGE->blocks->add_region('content');
 
-$context = get_context_instance(CONTEXT_USER, $USER->id);
+$context = context_user::instance($USER->id);
 $PAGE->set_context($context);
 
 $c = '';
@@ -22,7 +22,7 @@ if(!isset($_GET['category']) and !isset($_POST['category'])) {
     $categoryid = $_GET['category'];
   else
     $categoryid = $_POST['category'];
-  $context = get_context_instance(CONTEXT_COURSECAT, $categoryid);
+  $context = context_coursecat::instance($categoryid);
   if(has_capability(PERMISSION, $context)) {
     $school = $DB->get_record('course_categories', array('id' => $categoryid));
     $PAGE->navbar->add(get_string('manage', 'block_classmanager').' '.$school->name, new moodle_url($CFG->wwwroot.'/blocks/classmanager/admin.php?category='.$categoryid));
@@ -36,7 +36,7 @@ if(!isset($_GET['category']) and !isset($_POST['category'])) {
 						AND m.cohortid = c.id
 						AND c.id = '.$_GET['filter'].'
 						AND c.contextid='.$context->id.'
-						GROUP BY u.id
+						GROUP BY u.id, c.id
 						ORDER BY u.lastname, u.firstname');
 
       if(is_array($user_match)  && count($user_match) > 0) {
@@ -78,7 +78,7 @@ if(!isset($_GET['category']) and !isset($_POST['category'])) {
 						AND m.cohortid = c.id
 						AND c.id = '.$_GET['filter'].'
 						AND c.contextid='.$context->id.'
-						GROUP BY u.id
+						GROUP BY u.id, c.id
 						ORDER BY u.lastname, u.firstname');
       
       $numofusers = count($users);

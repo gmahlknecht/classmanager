@@ -10,7 +10,7 @@ $PAGE->set_pagetype('my-index');
 $PAGE->blocks->add_region('content');
 
 
-$context = get_context_instance(CONTEXT_USER, $USER->id);
+$context = context_user::instance($USER->id);
 $PAGE->set_context($context);
 
 $c = '';
@@ -25,7 +25,7 @@ if(!isset($_GET['category']) and !isset($_POST['category'])) {
     $categoryid = $_GET['category'];
   else
     $categoryid = $_POST['category'];	
-  $context = get_context_instance(CONTEXT_COURSECAT, $categoryid);
+  $context = context_coursecat::instance($categoryid);
   if(has_capability(PERMISSION, $context)) {
     $school = $DB->get_record('course_categories', array('id' => $categoryid));
     
@@ -33,7 +33,7 @@ if(!isset($_GET['category']) and !isset($_POST['category'])) {
     $PAGE->navbar->add(get_string('classes', 'block_classmanager'));
 		
     $c .= get_string('classdescription', 'block_classmanager');
-    $context = get_context_instance(CONTEXT_COURSECAT, $categoryid);
+    $context = context_coursecat::instance($categoryid);
     
     if(isset($_GET['action']) && $_GET['action'] == 'DELETE') {
       $classes_match = $DB->get_records('cohort', array('id'=>$_GET['classid'], 'contextid'=>$context->id));

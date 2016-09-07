@@ -11,7 +11,7 @@ $PAGE->set_pagelayout('mydashboard');
 $PAGE->set_pagetype('my-index');
 $PAGE->blocks->add_region('content');
 
-$context = get_context_instance(CONTEXT_USER, $USER->id);
+$context = context_user::instance($USER->id);
 $PAGE->set_context($context);
 
 $c = '';
@@ -28,7 +28,7 @@ if(!isset($_GET['category']) and !isset($_POST['category'])) {
 	else
 		$categoryid = $_POST['category'];
 	
-	$context = get_context_instance(CONTEXT_COURSECAT, $categoryid);
+	$context = context_coursecat::instance($categoryid);
 	if(has_capability(PERMISSION, $context)) {
 		$school = $DB->get_record('course_categories', array('id' => $categoryid));
 		
@@ -36,7 +36,7 @@ if(!isset($_GET['category']) and !isset($_POST['category'])) {
 		$PAGE->navbar->add(get_string('connections', 'block_classmanager'));
 		
 		$c .= get_string('connectionsdescription', 'block_classmanager');
-		$context = get_context_instance(CONTEXT_COURSECAT, $categoryid);
+		$context = context_coursecat::instance($categoryid);
 		
 		
 		if(isset($_GET['connect']) and $_GET['connect'] != '' and $_GET['connect']>0) {

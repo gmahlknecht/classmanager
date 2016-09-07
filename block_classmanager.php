@@ -50,7 +50,7 @@ class block_classmanager extends block_base {
     $edit_courses = array();
     $categories = $DB->get_records('course_categories', array('parent' => CORE_CATEGORY));
     foreach($categories as $category) {
-      $context = get_context_instance(CONTEXT_COURSECAT, $category->id);
+      $context=context_coursecat::instance($category->id);
       if(has_capability(PERMISSION, $context)) {
 	$edit_categories[] = $category;
       }

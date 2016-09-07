@@ -12,7 +12,7 @@ $PAGE->set_pagetype('my-index');
 $PAGE->blocks->add_region('content');
 
 
-$context = get_context_instance(CONTEXT_USER, $USER->id);
+$context = context_user::instance($USER->id);
 $PAGE->set_context($context);
 
 $c = '';
@@ -29,7 +29,7 @@ if(!isset($_GET['category']) and !isset($_POST['category'])) {
 	else
 		$categoryid = $_POST['category'];
 	
-	$context = get_context_instance(CONTEXT_COURSECAT, $categoryid);
+	$context = context_coursecat::instance($categoryid);
 	if(has_capability(PERMISSION, $context)) {
 		$header = get_string('classespagetitle', 'block_classmanager');
 		$school = $DB->get_record('course_categories', array('id' => $categoryid));
@@ -88,7 +88,7 @@ if(!isset($_GET['category']) and !isset($_POST['category'])) {
 						AND m.cohortid = c.id
 						AND c.id = '.$_GET['filter'].'
 						AND c.contextid='.$context->id.'
-						GROUP BY u.id
+						GROUP BY u.id, c.id
 						ORDER BY u.lastname, u.firstname');//, array($_GET['filter'], $context->id));
 			else
 				$users = $DB->get_records_sql('SELECT u.id, u.firstname , u.lastname, c.id as classe, c.idnumber as classname
@@ -96,7 +96,7 @@ if(!isset($_GET['category']) and !isset($_POST['category'])) {
 					WHERE u.id = m.userid
 						AND m.cohortid = c.id
 						AND c.contextid=?
-						GROUP BY u.id
+						GROUP BY u.id, c.id
 						ORDER BY u.lastname, u.firstname', array($context->id), 'u.lastname');
 			
 				

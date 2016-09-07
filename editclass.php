@@ -12,7 +12,7 @@ $PAGE->set_pagetype('my-index');
 $PAGE->blocks->add_region('content');
 
 
-$context = get_context_instance(CONTEXT_USER, $USER->id);
+$context = context_user::instance($USER->id);
 $PAGE->set_context($context);
 
 $c = '';
@@ -31,7 +31,7 @@ if(!isset($_GET['category']) and !isset($_POST['category'])) {
 	else
 		$classid = $_POST['classid'];
 	
-	$context = get_context_instance(CONTEXT_COURSECAT, $categoryid);
+	$context = context_coursecat::instance($categoryid);
 	if(has_capability(PERMISSION, $context)) {
 		$school = $DB->get_record('course_categories', array('id' => $categoryid));
 		$header = get_string('classespagetitle', 'block_classmanager');

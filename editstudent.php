@@ -13,7 +13,7 @@ $PAGE->set_pagetype('my-index');
 $PAGE->blocks->add_region('content');
 
 
-$context = get_context_instance(CONTEXT_USER, $USER->id);
+$context = context_user::instance($USER->id);
 $PAGE->set_context($context);
 
 $c = '';
@@ -35,7 +35,7 @@ if(!isset($_GET['category']) and !isset($_POST['category'])) {
 	else
 		$userid = $_POST['userid'];
 	
-	$context = get_context_instance(CONTEXT_COURSECAT, $categoryid);
+	$context = context_coursecat::instance($categoryid);
 	
 	if($userid>0)
 		$user = $DB->get_record_sql('SELECT u.id, u.lastname, u.firstname, u.email, c.id as classe

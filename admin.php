@@ -11,7 +11,7 @@ $PAGE->blocks->add_region('content');
 
 
 $header = get_string('adminpagetitle', 'block_classmanager');
-$context = get_context_instance(CONTEXT_USER, $USER->id);
+$context = context_user::instance($USER->id);
 $PAGE->set_context($context);
 
 $c = '';
@@ -19,7 +19,7 @@ if(!isset($_GET['category'])) {
   $c .= "no category";
 	
 } else {
-  $context = get_context_instance(CONTEXT_COURSECAT, $_GET['category']);
+  $context = context_coursecat::instance($_GET['category']);
   if(has_capability(PERMISSION, $context)) {
 		
     $school = $DB->get_record('course_categories', array('id'=>$_GET['category']));
