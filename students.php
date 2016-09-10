@@ -97,7 +97,7 @@ if(!isset($_GET['category']) and !isset($_POST['category'])) {
 						AND m.cohortid = c.id
 						AND c.contextid=?
 						GROUP BY u.id, c.id
-						ORDER BY u.lastname, u.firstname', array($context->id), 'u.lastname');
+						ORDER BY u.lastname, u.firstname', array($context->id));
 			
 				
 			$numofusers = count($users);
