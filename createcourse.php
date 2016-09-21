@@ -78,7 +78,7 @@ $classes[0] = get_string('none', 'block_classmanager');
 $edit_categories = array();
 $categories = $DB->get_records('course_categories', array('parent' => CORE_CATEGORY), "name");
 foreach($categories as $category) {
-	$context = get_context_instance(CONTEXT_COURSECAT, $category->id);
+	$context = context_coursecat::instance($category->id);
 	if(has_capability("moodle/course:create", $context)) {
 		$classes_match = $DB->get_records('cohort', array('contextid'=>$context->id), "name");
 		foreach($classes_match as $class) {
