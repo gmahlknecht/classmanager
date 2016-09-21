@@ -41,8 +41,11 @@ if(!isset($_GET['category']) and !isset($_POST['category'])) {
 	if(count($param) == 5 || count($param)==4) {
 	  $newuser = new stdClass;
 	  //FIXED UTF8 ISSUE
-	  for($k=1; $k<3; $k++)
-	    $param[$k] = mb_convert_encoding($param[$k], 'utf8');
+	  for($k=1; $k<3; $k++){
+	    if(!mb_check_encoding($param[$k],'UTF-8')){
+	   	$param[$k] = mb_convert_encoding($param[$k], 'utf8');
+	    }
+	  }
 	  $newuser->classe = trim(strtoupper($param[0]));
 	  $newuser->lastname = ucfirst(strtolower($param[1]));
 	  $newuser->firstname = ucfirst(strtolower($param[2]));
