@@ -70,7 +70,7 @@ class block_classmanager extends block_base {
 	foreach($edit_categories as $category) {				
 	  $c .= "<b>".$category->name."</b><br>";
 	  $c .= get_string("helpblock", "block_classmanager")."<br>";
-	  $c .=  "<a href=\"".$CFG->wwwroot."/course/category.php?id=".$category->id."\">".get_string("courses")."</a><br>";		
+	  $c .=  "<a href=\"".$CFG->wwwroot."/course/index.php?categoryid=".$category->id."\">".get_string("courses")."</a><br>";		
 	  $c .=  "<a href=\"".$CFG->wwwroot."/blocks/classmanager/classes.php?category=".$category->id."\">".get_string("classes", "block_classmanager")."</a><br>";		
 	  $c .=  "<a href=\"".$CFG->wwwroot."/blocks/classmanager/students.php?category=".$category->id."\">".get_string("users")."</a><br>";		
 	  $c .=  "<a href=\"".$CFG->wwwroot."/blocks/classmanager/deleteusers.php?category=".$category->id."\">".get_string("deleteusers", "block_classmanager")."</a><br>";		
