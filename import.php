@@ -47,8 +47,8 @@ if(!isset($_GET['category']) and !isset($_POST['category'])) {
 	    }
 	  }
 	  $newuser->classe = trim(strtoupper($param[0]));
-	  $newuser->lastname = ucfirst(strtolower($param[1]));
-	  $newuser->firstname = ucfirst(strtolower($param[2]));
+	  $newuser->lastname = trim($param[1]);
+	  $newuser->firstname = trim($param[2]);
 				
 	  $newuser->mail = trim(strtolower($param[3]));
 	  if(

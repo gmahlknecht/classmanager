@@ -20,7 +20,7 @@
   $string['schoolnotfound'] = 'Schule nicht gefunden';
   $string['notalldata'] = 'Nicht alle Daten eingegeben';
   $string['thisisanewschool'] = 'Neue Schule';
-  $string['saved'] = 'Änderungen gespeichert';
+  $string['saved'] = '&Auml;nderungen gespeichert';
   $string['yourefromnoschool'] = 'Sie sind kein Verwalter einer Schule';
   $string['manage'] = 'Verwalten:';
   $string['managerpagedescription'] = 'Hier können Sie Klassen, Schüler und Lehrer Ihre Schule verwalten.';

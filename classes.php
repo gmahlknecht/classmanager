@@ -58,7 +58,7 @@ if(!isset($_GET['category']) and !isset($_POST['category'])) {
 	  */
 	  $students_str="";
 	} else {
-	  $students_str = "<a href=\"".$CFG->wwwroot."/blocks/classmanager/students.php?category=".$categoryid."&filter=".$class->id."\">".$students." ".get_string("enroledusers", "block_classmanager")."</a>";
+	  $students_str = "   <a href=\"".$CFG->wwwroot."/blocks/classmanager/students.php?category=".$categoryid."&filter=".$class->id."\">".$students." ".get_string("enroledusers", "block_classmanager")."</a>";
 	}
 	$c .= "<tr><td>".$class->name."</td>
 					<td><a href=\"".$CFG->wwwroot."/blocks/classmanager/editclass.php?category=".$categoryid."&classid=".$class->id."\">".get_string('edit', 'block_classmanager')."</a></td>

@@ -67,7 +67,7 @@
   $string['connectionalreadyexists'] = 'connection already exists';
   $string['connectioncreated'] = 'connection created';
   $string['classmanager:manage'] = 'Manage';
-  $string['enroledusers'] = 'enroled users';
+  $string['enroledusers'] = 'enrolled users';
   $string['areyousure'] = 'are you sure?';
   $string['groupdeleted'] = 'group deleted';
   $string['helpblock'] = 'choose category';
