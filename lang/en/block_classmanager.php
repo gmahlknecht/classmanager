@@ -81,4 +81,5 @@
   $string['createcoursedescription'] = 'Enter the name of the course.';
   $string['none'] = 'nothing choosed';
   $string['createcourse'] = 'Create course';
+  $string['emailchangenotice'] = 'Has to be changed by the user itself!';
 

@@ -87,6 +87,4 @@
   $string['chooseclassdescription'] = 'Wählen Sie eine Gruppe, die in den Kurs eingeschrieben werden soll. Wenn Sie Einschreibungen erst später vornehmen möchten überspringen Sie diesen Schritt.';
   $string['none'] = 'nichts ausgewählt';
   $string['createcourse'] = 'neuen Kurs erstellen';
-
-
-
+  $string['emailchangenotice'] = 'Muss vom Nutzer selbst geändert werden';

@@ -22,52 +22,48 @@ $header = get_string('classespagetitle', 'block_classmanager');
 
 
 if(!isset($_GET['category']) and !isset($_POST['category'])) {
-		$c .= "no category";
-	
+  $c .= "no category";
 } else {
-	
-	if(isset($_GET['category']))
-		$categoryid = $_GET['category'];
-	else
-		$categoryid = $_POST['category'];
-	if(isset($_GET['userid']))
-		$userid = $_GET['userid'];
-	else
-		$userid = $_POST['userid'];
-	
-	$context = context_coursecat::instance($categoryid);
-	
-	if($userid>0)
-		$user = $DB->get_record_sql('SELECT u.id, u.lastname, u.firstname, u.email, c.id as classe
+  if(isset($_GET['category'])){
+    $categoryid = $_GET['category'];
+  }
+  else{
+    $categoryid = $_POST['category'];
+  }
+  if(isset($_GET['userid'])) $userid = $_GET['userid'];
+  else $userid = $_POST['userid'];
+  $context = context_coursecat::instance($categoryid);
+  
+  if($userid>0){
+    $user = $DB->get_record_sql('SELECT u.id, u.username, u.lastname, u.firstname, u.email, c.id as classe
 			FROM '.$CFG->prefix.'user u, '.$CFG->prefix.'cohort c, '.$CFG->prefix.'cohort_members m 
 			WHERE u.id = m.userid 
 				AND m.cohortid = c.id
 				AND c.contextid=? 
 				AND u.id=?', array($context->id, $userid));
-	else
-		$user = new stdClass();
-	if(has_capability(PERMISSION, $context) and (count($user)>0 or $userid==0)) {
-		$header = get_string('classespagetitle', 'block_classmanager');
-		$school = $DB->get_record('course_categories', array('id' => $categoryid));
-		
-		$c .= get_string('editstudentdescription', 'block_classmanager')."<br>";
-		
-		require('../../user/lib.php');
-		require('../../cohort/lib.php');
-		if(isset($_POST['lastname'])) {
-			if(isset($_POST['lastname']) && $_POST['lastname']!='' && 
-				isset($_POST['firstname']) && $_POST['firstname']!='' &&
-				isset($_POST['email']) && $_POST['email']!='' &&
-				isset($_POST['class']) && $_POST['class']!='' &&
-				($userid>0 || (isset($_POST['password']) && $_POST['password'] != ''))) {
-					
-				$cohort = $DB->get_record('cohort', array('id'=>$_POST['class'], 'contextid'=>$context->id));
-				if(isset($cohort->id)) {
-			
+  }
+  else{
+    $user = new stdClass();
+  }
+  if(has_capability(PERMISSION, $context) and (count($user)>0 or $userid==0)) {
+    $header = get_string('classespagetitle', 'block_classmanager');
+    $school = $DB->get_record('course_categories', array('id' => $categoryid));
+    $c .= get_string('editstudentdescription', 'block_classmanager')."<br>";
+    require('../../user/lib.php');
+    require('../../cohort/lib.php');
+    if(isset($_POST['lastname'])) {
+      if(isset($_POST['lastname']) && $_POST['lastname']!='' && 
+        isset($_POST['firstname']) && $_POST['firstname']!='' &&
+        isset($_POST['email']) && $_POST['email']!='' &&
+        isset($_POST['class']) && $_POST['class']!='' &&
+        isset($_POST['username']) && $_POST['username']!='' &&
+	($userid>0 || (isset($_POST['password']) && $_POST['password'] != ''))) {
+	  $cohort = $DB->get_record('cohort', array('id'=>$_POST['class'], 'contextid'=>$context->id));
+          if(isset($cohort->id)) {
 					$user->lastname = $_POST['lastname'];
 					$user->firstname = $_POST['firstname'];
 					$user->email = $_POST['email'];
-					$user->username = $_POST['email'];
+					$user->username = $_POST['username'];
 					$user->auth = 'manual';
 					$user->confirmed = 1;
 					$user->policyagreed = 0;
@@ -117,7 +113,7 @@ if(!isset($_GET['category']) and !isset($_POST['category'])) {
 		
 					} else {
 						$user->password = $_POST['password'];
-						$user->username = $user->email;
+						//$user->username = $user->email;
 						$userid = user_create_user($user);
 						$user->id = $userid;
 						cohort_add_member($_POST['class'], $userid);
@@ -179,20 +175,25 @@ if(!isset($_GET['category']) and !isset($_POST['category'])) {
 					<input type=\"hidden\" name=\"category\" value=\"".$categoryid."\" >
 					<table>
 					<tr>
-						<td>".get_string('lastname')."</td>
-						<td><input type=\"text\" name=\"lastname\" value=\"".$user->lastname."\"></td>
+						<td>".get_string('username')."</td>
+						<td><input type=\"text\" name=\"username\" value=\"".$user->username."\"  size=\"45\" readonly=\"readonly\"></td>
 					</tr>
 					<tr>
 						<td>".get_string('firstname')."</td>
 						<td><input type=\"text\" name=\"firstname\" value=\"".$user->firstname."\"></td>
 					</tr>
 					<tr>
+						<td>".get_string('lastname')."</td>
+						<td><input type=\"text\" name=\"lastname\" value=\"".$user->lastname."\"></td>
+					</tr>
+					<tr>
+					<tr>
 						<td>".get_string('newpassword')."</td>
 						<td><input type=\"password\" name=\"password\" value=\"\"></td>
 					</tr>
 					<tr>
 						<td>".get_string('email')."</td>
-						<td><input type=\"text\" name=\"email\" value=\"".$user->email."\"></td>
+						<td><input type=\"text\" name=\"email\" value=\"".$user->email."\" size=\"45\" readonly=\"readonly\">(".get_string('emailchangenotice', 'block_classmanager').")</td>
 					</tr>
 					<tr>
 						<td>".get_string('class', 'block_classmanager')."</td>
