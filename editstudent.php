@@ -174,7 +174,7 @@ if (!filter_has_var(INPUT_GET, 'category') and ! filter_has_var(INPUT_POST, 'cat
 					<table>
 					<tr>
 						<td>" . get_string('username') . "</td>
-						<td><input type=\"text\" name=\"username\" value=\"" . $user->username . "\"  size=\"45\" readonly=\"false\"></td>
+						<td><input type=\"text\" name=\"username\" value=\"" . $user->username . "\"  size=\"45\"></td>
 					</tr>
 					<tr>
 						<td>" . get_string('firstname') . "</td>
