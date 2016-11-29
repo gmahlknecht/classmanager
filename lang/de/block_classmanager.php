@@ -91,3 +91,4 @@ $string['chooseclassdescription'] = 'W&auml;hlen Sie eine Gruppe, die in den Kur
 $string['none'] = 'nichts ausgew&auml;hlt';
 $string['createcourse'] = 'neuen Kurs erstellen';
 $string['emailchangenotice'] = 'Muss vom Nutzer selbst ge&auml;ndert werden';
+$string['rightsproblem'] = 'Sie verfügen nicht über die notwendige Berechtigung!';
