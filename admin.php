@@ -37,8 +37,9 @@ if (!isset($_GET['category'])) {
 			<tr><td><a href=\"" . $CFG->wwwroot . "/blocks/classmanager/connections.php?category=" . $_GET['category'] . "\">" . get_string('manageconnections', 'block_classmanager') . "</a></td>
 				<td>" . get_string('toworktogether', 'block_classmanager') . "</td></tr>";
         $c .= "</table>";
-    } else
+    } else {
         $c .= 'Ich root - du nix';
+    }
 }
 $c .= '<br><center><small>Class Manager by Stefan Raffeiner</small></center>';
 

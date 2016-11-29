@@ -1,4 +1,5 @@
 <?php
+
 require_once("../../config.php"); //for Moodle integration
 require_once("config.php"); //for Classmanager Configuration
 require_once($CFG->dirroot . "/course/lib.php");
@@ -83,6 +84,7 @@ foreach ($categories as $category) {
 $categorieslist = coursecat::make_categories_list('moodle/course:create');
 
 class createcourse_form extends moodleform {
+
     function definition() {
         $mform = & $this->_form;
 
@@ -99,6 +101,7 @@ class createcourse_form extends moodleform {
 
         $mform->addElement('submit', 'intro', get_string("submit"));
     }
+
 }
 
 $form = new createcourse_form($CFG->wwwroot . '/blocks/classmanager/createcourse.php');

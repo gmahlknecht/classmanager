@@ -1,4 +1,5 @@
 <?php
+
 define("CATEGORY", 2); //category with connected fachbereiche
 define("CORE_CATEGORY", 16); //category with connected fachbereiche
 define("ROLEID", 11); //role teachers have in a connected fachbereich
