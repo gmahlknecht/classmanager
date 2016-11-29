@@ -1,10 +1,6 @@
 <?php
-
-
 $capabilities = array(
-
     'block/classmanager:manage' => array(
-
         'captype' => 'write',
         'contextlevel' => CONTEXT_COURSECAT,
         'archetypes' => array(
@@ -13,7 +9,4 @@ $capabilities = array(
             'manager' => CAP_ALLOW
         )
     ),
-
-   
-
 );
