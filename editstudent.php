@@ -13,20 +13,21 @@ $PAGE->set_context($context);
 $c = '';
 $header = get_string('classespagetitle', 'block_classmanager');
 
-if (!isset($_GET['category']) and ! isset($_POST['category'])) {
+if (!filter_has_var(INPUT_GET, 'category') and ! filter_has_var(INPUT_POST, 'category')) {
     $c .= "no category";
 } else {
-    if (isset($_GET['category'])) {
-        $categoryid = $_GET['category'];
+    if (filter_has_var(INPUT_GET, 'category')) {
+        $categoryid = filter_input(INPUT_GET, 'category', FILTER_SANITIZE_NUMBER_INT);
     } else {
-        $categoryid = $_POST['category'];
-    }
-    if (isset($_GET['userid'])) {
-        $userid = $_GET['userid'];
-    } else {
-        $userid = $_POST['userid'];
+        $categoryid = filter_input(INPUT_POST, 'category', FILTER_SANITIZE_NUMBER_INT);
     }
     $context = context_coursecat::instance($categoryid);
+
+    if (filter_has_var(INPUT_GET, 'userid')) {
+        $userid = filter_input(INPUT_GET, 'userid', FILTER_SANITIZE_NUMBER_INT);
+    } else {
+        $userid = filter_input(INPUT_POST, 'userid', FILTER_SANITIZE_NUMBER_INT);
+    }
 
     if ($userid > 0) {
         $user = $DB->get_record_sql('SELECT u.id, u.username, u.lastname, u.firstname, u.email, c.id as classe
@@ -44,36 +45,49 @@ if (!isset($_GET['category']) and ! isset($_POST['category'])) {
         $c .= get_string('editstudentdescription', 'block_classmanager') . "<br>";
         require('../../user/lib.php');
         require('../../cohort/lib.php');
-        if (isset($_POST['lastname'])) {
-            if (isset($_POST['lastname']) && $_POST['lastname'] != '' &&
-                    isset($_POST['firstname']) && $_POST['firstname'] != '' &&
-                    isset($_POST['email']) && $_POST['email'] != '' &&
-                    isset($_POST['class']) && $_POST['class'] != '' &&
-                    isset($_POST['username']) && $_POST['username'] != '' &&
-                    ($userid > 0 || (isset($_POST['password']) && $_POST['password'] != ''))) {
-                $cohort = $DB->get_record('cohort', array('id' => $_POST['class'], 'contextid' => $context->id));
+
+        $issetlastname = filter_has_var(INPUT_POST, 'lastname');
+        $lastname = filter_input(INPUT_POST, 'lastname', FILTER_SANITIZE_STRING);
+        $issetfirstname = filter_has_var(INPUT_POST, 'firstname');
+        $firstname = filter_input(INPUT_POST, 'firstname', FILTER_SANITIZE_STRING);
+        $issetemail = filter_has_var(INPUT_POST, 'email');
+        $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
+        $issetusername = filter_has_var(INPUT_POST, 'username');
+        $username = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_EMAIL);
+        $issetpassword = filter_has_var(INPUT_POST, 'password');
+        $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_STRING);
+        $issetclass = filter_has_var(INPUT_POST, 'class');
+        $classid = filter_input(INPUT_POST, 'class', FILTER_SANITIZE_STRING);
+
+        if ($issetlastname) {
+            if ($issetlastname && $lastname != '' &&
+                    $issetfirstname && $firstname != '' &&
+                    $issetemail && $email != '' &&
+                    $issetclass && $classid != '' &&
+                    $issetusername && $username != '' &&
+                    ($userid > 0 || ($issetpassword && $password != ''))) {
+                $cohort = $DB->get_record('cohort', array('id' => $classid, 'contextid' => $context->id));
                 if (isset($cohort->id)) {
-                    $user->lastname = $_POST['lastname'];
-                    $user->firstname = $_POST['firstname'];
-                    $user->email = $_POST['email'];
-                    $user->username = $_POST['username'];
+                    $user->lastname = $lastname;
+                    $user->firstname = $firstname;
+                    $user->email = $email;
+                    $user->username = $username;
                     $user->auth = 'manual';
                     $user->confirmed = 1;
                     $user->policyagreed = 0;
                     $user->mnethostid = 1;
                     $user->lang = 'de';
 
-                    if (isset($_POST['password']) && $_POST['password'] != '') {
-                        $user->password = $_POST['password'];
-                        $user->password = hash_internal_user_password($user->password);
+                    if ($issetpassword && $password != '') {
+                        $user->password = hash_internal_user_password($password);
                     }
                     if ($userid > 0) {
                         $user->id = $userid;
                         $user->timemodified = time();
                         $DB->update_record('user', $user);
-                        if ($user->classe != $_POST['class']) {
+                        if ($user->classe != $classid) {
                             cohort_remove_member($user->classe, $userid);
-                            cohort_add_member($_POST['class'], $userid);
+                            cohort_add_member($classid, $userid);
 
                             switch ($cohort->idnumber) {
                                 case 'TE':
@@ -86,7 +100,6 @@ if (!isset($_GET['category']) and ! isset($_POST['category'])) {
                                     $role = STUDENTROLE;
                                     break;
                             }
-                            print_r($_POST);
 
                             $data = new stdClass();
                             $data->roleid = $role;
@@ -103,11 +116,11 @@ if (!isset($_GET['category']) and ! isset($_POST['category'])) {
                             }
                         }
                     } else {
-                        $user->password = $_POST['password'];
+                        $user->password = $password;
                         $userid = user_create_user($user);
                         $user->id = $userid;
-                        cohort_add_member($_POST['class'], $userid);
-                        $cohort = $DB->get_record('cohort', array('id' => $_POST['class']));
+                        cohort_add_member($classid, $userid);
+                        $cohort = $DB->get_record('cohort', array('id' => $userid));
                         switch ($cohort->idnumber) {
                             case 'TE':
                                 $role = TEACHERROLE;
@@ -126,7 +139,7 @@ if (!isset($_GET['category']) and ! isset($_POST['category'])) {
                         $data->contextid = $context->id;
                         $roleassing = $DB->insert_record('role_assignments', $data);
                     }
-                    $user->classe = $_POST['class'];
+                    $user->classe = $classid;
                     $c .= "<b><font color=\"green\">" . get_string('saved', 'block_classmanager') . "</font></b>";
                 } else {
                     $c .= "<b><font color=\"red\">" . get_string('notalldata', 'block_classmanager') . "</font></b>";
@@ -136,9 +149,6 @@ if (!isset($_GET['category']) and ! isset($_POST['category'])) {
             }
         }
         if (isset($userid)) {
-            //if($userid>0)
-            //$user = $DB->get_record('user', array('id' => $userid));
-            //else {
             if ($userid == 0) {
                 $user = new stdClass;
                 $user->id = 0;
@@ -164,7 +174,7 @@ if (!isset($_GET['category']) and ! isset($_POST['category'])) {
 					<table>
 					<tr>
 						<td>" . get_string('username') . "</td>
-						<td><input type=\"text\" name=\"username\" value=\"" . $user->username . "\"  size=\"45\" readonly=\"readonly\"></td>
+						<td><input type=\"text\" name=\"username\" value=\"" . $user->username . "\"  size=\"45\" readonly=\"false\"></td>
 					</tr>
 					<tr>
 						<td>" . get_string('firstname') . "</td>
@@ -214,8 +224,7 @@ if (!isset($_GET['category']) and ! isset($_POST['category'])) {
         } else {
             $c .= "2" . get_string('error');
         }
-    }
-    else {
+    } else {
         $c .= "ich root - du nix";
     }
 }
