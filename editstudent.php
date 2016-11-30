@@ -62,7 +62,7 @@ if (!filter_has_var(INPUT_GET, 'category') and ! filter_has_var(INPUT_POST, 'cat
         if ($issetlastname) {
             if ($issetlastname && $lastname != '' &&
                     $issetfirstname && $firstname != '' &&
-                    $issetemail && $email != '' &&
+                    //$issetemail && $email != '' &&
                     $issetclass && $classid != '' &&
                     $issetusername && $username != '' &&
                     ($userid > 0 || ($issetpassword && $password != ''))) {
@@ -142,10 +142,10 @@ if (!filter_has_var(INPUT_GET, 'category') and ! filter_has_var(INPUT_POST, 'cat
                     $user->classe = $classid;
                     $c .= "<b><font color=\"green\">" . get_string('saved', 'block_classmanager') . "</font></b>";
                 } else {
-                    $c .= "<b><font color=\"red\">" . get_string('notalldata', 'block_classmanager') . "</font></b>";
+                    $c .= "<b><font color=\"red\">1" . get_string('notalldata', 'block_classmanager') . "</font></b>";
                 }
             } else {
-                $c .= "<b><font color=\"red\">" . get_string('notalldata', 'block_classmanager') . "</font></b>";
+                $c .= "<b><font color=\"red\">2" . get_string('notalldata', 'block_classmanager') . "</font></b>";
             }
         }
         if (isset($userid)) {
