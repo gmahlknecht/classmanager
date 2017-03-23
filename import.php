@@ -76,7 +76,7 @@ if (!isset($_GET['category']) and ! isset($_POST['category'])) {
                         $insertuser->password = $pass;
                         $insertuser->firstname = $newuser->firstname;
                         $insertuser->lastname = $newuser->lastname;
-                        $insertuser->email = $newuser->mail;
+                        #$insertuser->email = $newuser->mail;
                         $insertuser->mnethostid = 1;
                         $insertuser->lang = 'de';
 
