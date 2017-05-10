@@ -15,7 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Class manager for multiple schools
+ * Class manager import new students
  *
  * @package block_classmanager
  * @copyright 2017 Stefan Raffeiner, Giovanni Mahlknecht
