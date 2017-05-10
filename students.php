@@ -55,7 +55,7 @@ if (! filter_has_var(INPUT_GET, 'category') and ! filter_has_var(INPUT_POST, 'ca
         if (filter_has_var(INPUT_GET, 'action') && filter_input(INPUT_GET, 'action', FILTER_SANITIZE_STRING) == 'DELETE') {
             $userid = filter_input(INPUT_GET, 'userid', FILTER_SANITIZE_NUMBER_INT);
             $sqlstring = 'SELECT u.id as userid, u.username, u.auth, u.firstname , u.lastname, u.id, c.id as classe, ';
-            $sqlstring .= 'c.idnumber as classname, u.email ';
+            $sqlstring .= 'c.idnumber as classname, u.email, u.lastlogin ';
             $sqlstring .= 'FROM ' . $CFG->prefix . 'user u, ' . $CFG->prefix . 'cohort_members m, ' . $CFG->prefix . 'cohort c ';
             $sqlstring .= 'WHERE u.id = m.userid ';
             $sqlstring .= 'AND m.cohortid = c.id ';
@@ -96,7 +96,9 @@ if (! filter_has_var(INPUT_GET, 'category') and ! filter_has_var(INPUT_POST, 'ca
             $c .= "<br>";
         }
         if (filter_has_var(INPUT_GET, 'filter')) {
-            $sqlstring = 'SELECT u.id, u.firstname , u.lastname, c.id as classe, c.idnumber as classname ';
+            // Filter by class id!
+            $sqlstring = 'SELECT u.id, u.firstname , u.lastname, c.id as classe, c.idnumber as classname, ';
+            $sqlstring .= ' u.lastlogin ';
             $sqlstring .= 'FROM ' . $CFG->prefix . 'user u, ' . $CFG->prefix . 'cohort_members m, ';
             $sqlstring .= $CFG->prefix . 'cohort c ';
             $sqlstring .= 'WHERE u.id = m.userid AND m.cohortid = c.id ';
@@ -105,13 +107,13 @@ if (! filter_has_var(INPUT_GET, 'category') and ! filter_has_var(INPUT_POST, 'ca
             $sqlstring .= 'ORDER BY u.lastname, u.firstname';
             $users = $DB->get_records_sql($sqlstring);
         } else {
-            $sqlstring = 'SELECT u.id, u.firstname , u.lastname, c.id as classe, c.idnumber as classname ';
+            // Without Class id filter!
+            $sqlstring = 'SELECT u.id, u.firstname , u.lastname, c.id as classe, c.idnumber as classname, ';
+            $sqlstring .= ' u.lastlogin ';
             $sqlstring .= 'FROM ' . $CFG->prefix . 'user u, ' . $CFG->prefix . 'cohort_members m, ';
             $sqlstring .= $CFG->prefix . 'cohort c ';
             $sqlstring .= 'WHERE u.id = m.userid AND m.cohortid = c.id AND c.contextid=? ';
             $sqlstring .= 'GROUP BY u.id, c.id ORDER BY u.lastname, u.firstname';
-            echo $sqlstring;
-            echo $context->id;
             $users = $DB->get_records_sql($sqlstring, array (
                     $context->id
             ));
@@ -130,9 +132,14 @@ if (! filter_has_var(INPUT_GET, 'category') and ! filter_has_var(INPUT_POST, 'ca
                     $c .= "</tr>";
                 }
                 $c .= "<tr>";
-                $c .= "<td><a href=\"" . $CFG->wwwroot . "/blocks/classmanager/editstudent.php?category=" . $categoryid;
-                $c .= "&userid=" . $user->id . "\">" . $user->lastname . " " . $user->firstname . "</a> ";
-                $c .= $user->classname . "</td>";
+                $c .= "<td>";
+                $linkedituser= $CFG->wwwroot . "/blocks/classmanager/editstudent.php?category=" . $categoryid . "&userid=" . $user->id;
+                $c .= "<a href=\"" .$linkedituser . "\">";
+                $c .= $user->lastname;
+                $c .= " ".$user->firstname;
+                // $c .= " ".  $user->lastlogin;
+                $c .= "</a> <td>";
+                $c .= "<td>" . $user->classname . "</td>";
                 $count ++;
             }
             $c .= "</table>";
