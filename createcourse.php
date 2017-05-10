@@ -70,8 +70,8 @@ $categories = $DB->get_records('course_categories', array('parent' => CORE_CATEG
 foreach ($categories as $category) {
     $context = context_coursecat::instance($category->id);
     if (has_capability("moodle/course:create", $context)) {
-        $classes_match = $DB->get_records('cohort', array('contextid' => $context->id), "name");
-        foreach ($classes_match as $class) {
+        $classesmatch = $DB->get_records('cohort', array('contextid' => $context->id), "name");
+        foreach ($classesmatch as $class) {
             if (count($categories) > 1) {
                 $classes[$class->id] = $class->name . '  (' . $category->name . ')';
             } else {

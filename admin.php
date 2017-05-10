@@ -22,9 +22,9 @@
  * @copyright 2017 Stefan Raffeiner, Giovanni Mahlknecht
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-require_once ("../../config.php");
+require_once("../../config.php");
 require_login();
-require_once ("./config.php");
+require_once("./config.php");
 $params = array ();
 $PAGE->set_url('/my/index.php', $params);
 $PAGE->set_pagelayout('mydashboard');
@@ -90,7 +90,7 @@ if (! isset($_GET['category'])) {
         $c .= 'Ich root - du nix';
     }
 }
-$c .= '<br><center><small>Class Manager by Stefan Raffeiner</small></center>';
+$c .= '<br><center><small>Class Manager</small></center>';
 
 $PAGE->set_title($header);
 $PAGE->set_heading($header);

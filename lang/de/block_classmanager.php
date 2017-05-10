@@ -1,7 +1,29 @@
 <?php
+// This file is part of Moodle - http://moodle.org/
+//
+// Moodle is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// Moodle is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+
+/**
+ * Strings for component 'block_classmanager', language 'en'
+ *
+ * @package   block_classmanager
+ * @copyright 2017 Stefan Raffeiner, Giovanni Mahlknecht
+ * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
+
 $string['deleteusers'] = 'Nutzer l&ouml;schen';
-$string['deleteusersdescription'] = 'Hier k&ouml;nnen sie die Nutzer ihrer Schule '
-        . 'l&ouml;schen';
+$string['deleteusersdescription'] = 'Hier k&ouml;nnen sie die Nutzer ihrer Schule l&ouml;schen';
 $string['deleteuserschoosecohort'] = 'W&auml;hlen sie die Nutzergruppe';
 $string['deleteusersdeletelink'] = 'Alle Nutzer dieser Klasse l&ouml;schen';
 $string['deleteuserspagetitle'] = 'Nutzer l&ouml;schen';
@@ -39,8 +61,8 @@ $string['theeaysiestway'] = 'Der einfachste Weg zum Starten';
 $string['importpagetitle'] = 'Sch&uuml;ler und Lehrer importieren';
 $string['import'] = 'Sch&uuml;ler und Lehrer importieren';
 $string['importdescription'] = '<p>Auf dieser Seite k&ouml;nnen Sie eine Tabelle mit Benutzerdaten von Sch&uuml;lern und Lehrern hochladen. Bitten lesen Sie die Anleitung genau durch, bevor Sie den Upload starten.</p>
-			<a style="text-align: center;" href="/moodle/blocks/classmanager/benutzertabelle_anleitung.pdf">Klicken Sie hier, um die Anleitung herunterzuladen.</a>
-			<p>Nach dem Import erhalten Sie eine Liste mit den Passw&ouml;rtern. Bitte bewahren Sie diese sorgf&auml;ltig auf! Diese Liste kann nur ein Mal heruntergeladen werden!</p>';
+<a style="text-align: center;" href="/moodle/blocks/classmanager/benutzertabelle_anleitung.pdf">Klicken Sie hier, um die Anleitung herunterzuladen.</a>
+<p>Nach dem Import erhalten Sie eine Liste mit den Passw&ouml;rtern. Bitte bewahren Sie diese sorgf&auml;ltig auf! Diese Liste kann nur ein Mal heruntergeladen werden!</p>';
 $string['iknowwhatido'] = 'Ich weiß was ich tue - Import starten';
 $string['wrongdata'] = 'Falsche Daten';
 $string['added'] = 'Hinzugef&uuml;gt';
@@ -66,12 +88,7 @@ $string['manageconnections'] = 'Mit Fachbereich verbinden';
 $string['studentpagetitle'] = 'Sch&uuml;ler/Lehrer bearbeiten';
 $string['connectionspagetitle'] = 'Verbindungen mit Fachbereichen bearbeiten';
 $string['connections'] = 'Verbindungen mit Fachbereichen';
-$string['connectionsdescription'] = 'Hier k&ouml;nnen Sie Ihre Schule mit s&uuml;dtirolweiten Fachbereichen verbinden. 
-		Somit kann schul&uuml;bergreifend zusammengearbeitet werden.<br>
-		Sobald Sie eine Verbindung erstellt haben k&ouml;nnen Sie im Bearbeitungsmen&uuml; Ihrer Kurse den Bereich in 
-		"Fachbereiche->[Name des Fachs]->[name Ihrer Schule]" &auml;ndern. Somit kann von diesem Kurs aus dann auf schul&uuml;bergreifende 
-		Ressourcen zugegriffen werden. Es wird empfohlen den Kurs zuerst im Bereich Ihrer Schule zu erstellen, die Benutzer hinzuzuf&uuml;gen und dann erst zu verschieben.
-		<br><b>Achtung</b> Erstellte Verbindungen k&ouml;nnen nicht mehr gel&ouml;scht werden. Erstellen Sie bitte nur Verbindungen die Sie auch ben&ouml;tigen.<br>';
+$string['connectionsdescription'] = 'Hier k&ouml;nnen Sie Ihre Schule mit s&uuml;dtirolweiten Fachbereichen verbinden. Somit kann schul&uuml;bergreifend zusammengearbeitet werden.<br> Sobald Sie eine Verbindung erstellt haben k&ouml;nnen Sie im Bearbeitungsmen&uuml; Ihrer Kurse den Bereich in "Fachbereiche->[Name des Fachs]->[name Ihrer Schule]" &auml;ndern. Somit kann von diesem Kurs aus dann auf schul&uuml;bergreifende Ressourcen zugegriffen werden. Es wird empfohlen den Kurs zuerst im Bereich Ihrer Schule zu erstellen, die Benutzer hinzuzuf&uuml;gen und dann erst zu verschieben. <br><b>Achtung</b> Erstellte Verbindungen k&ouml;nnen nicht mehr gel&ouml;scht werden. Erstellen Sie bitte nur Verbindungen die Sie auch ben&ouml;tigen.<br>';
 $string['connect'] = 'Mit Fachbereich verbinden';
 $string['connected'] = 'verbunden';
 $string['connectionalreadyexists'] = 'Bereits verbunden';
