@@ -17,8 +17,7 @@
 /**
  * Class Manager school administration
  *
- * @package contrib
- * @subpackage block_classmanager
+ * @package block_classmanager
  * @copyright 2017 Stefan Raffeiner, Giovanni Mahlknecht
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
