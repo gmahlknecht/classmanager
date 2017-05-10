@@ -18,7 +18,7 @@
  * Classmanager edit a single student
  *
  * @package block_classmanager
- * @copyright 2017 Stefan Raffeiner, Giovanni Mahlknecht
+ * @copyright 2013, 2017 Stefan Raffeiner, Giovanni Mahlknecht
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 require_once("../../config.php");
