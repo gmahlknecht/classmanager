@@ -1,2 +1,0 @@
-20130903: corrected createcourse.php - non existing cohort with id 0 was assigned if no class selected
-2013090301: corrected student import - assigned random password was too short and simple. In older moodle instances this was not an issue. Fixed - now a random password consisting of 2 lowercase, 2 uppercase, 2 numbers and 2 special chars is assigned. 
