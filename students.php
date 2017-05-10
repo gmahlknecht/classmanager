@@ -29,20 +29,20 @@ if (!filter_has_var(INPUT_GET, 'category') and ! filter_has_var(INPUT_POST, 'cat
         $c .= get_string('studentsdescription', 'block_classmanager');
         if (filter_has_var(INPUT_GET, 'action') && filter_input(INPUT_GET, 'action', FILTER_SANITIZE_STRING) == 'DELETE') {
             $userid = filter_input(INPUT_GET, 'userid', FILTER_SANITIZE_NUMBER_INT);
-            $user_match = $DB->get_records_sql('SELECT u.id as userid, u.username, u.auth, u.firstname , u.lastname, u.id, c.id as classe, c.idnumber as classname, u.email
+            $usermatch = $DB->get_records_sql('SELECT u.id as userid, u.username, u.auth, u.firstname , u.lastname, u.id, c.id as classe, c.idnumber as classname, u.email
 					FROM ' . $CFG->prefix . 'user u, ' . $CFG->prefix . 'cohort_members m, ' . $CFG->prefix . 'cohort c 
 					WHERE u.id = m.userid
 						AND m.cohortid = c.id
 						AND c.contextid=?
 						AND u.id = ?
 						ORDER BY u.lastname, u.firstname', array($context->id, $userid));
-            if (is_array($user_match) && count($user_match) > 0) {
+            if (is_array($usermatch) && count($usermatch) > 0) {
                 require('../../user/lib.php');
                 $del_user = new stdClass();
                 $del_user->id = $userid;
-                $del_user->email = $user_match[$userid]->email;
-                $del_user->username = $user_match[$userid]->username;
-                $del_user->auth = $user_match[$userid]->auth;
+                $del_user->email = $usermatch[$userid]->email;
+                $del_user->username = $usermatch[$userid]->username;
+                $del_user->auth = $usermatch[$userid]->auth;
                 user_delete_user($del_user);
                 $c .= "<br><b>" . get_string("userdeleted", "block_classmanager") . "</b><br>";
             } else {
