@@ -35,7 +35,8 @@ $c = '';
 $header = get_string('studentpagetitle', 'block_classmanager');
 
 if (! filter_has_var(INPUT_GET, 'category') and ! filter_has_var(INPUT_POST, 'category')) {
-    $c .= "no category";
+    // Not passed any category parameter.
+    $c .= get_string('missingparameter', 'block_classmanager');
 } else {
     if (filter_has_var(INPUT_GET, 'category')) {
         $categoryid = filter_input(INPUT_GET, 'category', FILTER_SANITIZE_NUMBER_INT);
@@ -147,7 +148,7 @@ if (! filter_has_var(INPUT_GET, 'category') and ! filter_has_var(INPUT_POST, 'ca
             $c .= get_string('nousercreated', 'block_classmanager');
         }
     } else {
-        $c .= 'Ich root - du nix';
+        $c .= get_string('rightsproblem', 'block_classmanager');
     }
 }
 

@@ -36,7 +36,7 @@ $PAGE->set_context($context);
 
 $c = '';
 if (! isset($_GET['category'])) {
-    $c .= "no category";
+    $c .= get_string('missingparameter', 'block_classmanager');
 } else {
     $context = context_coursecat::instance($_GET['category']);
     if (has_capability(PERMISSION, $context)) {
@@ -86,7 +86,7 @@ if (! isset($_GET['category'])) {
         $c .= "</tr>";
         $c .= "</table>";
     } else {
-        $c .= 'Ich root - du nix';
+        $c .= get_string('rightsproblem', 'block_classmanager');
     }
 }
 $c .= '<br><center><small>Class Manager</small></center>';
