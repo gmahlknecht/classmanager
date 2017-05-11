@@ -35,11 +35,15 @@ $context = context_user::instance($USER->id);
 $PAGE->set_context($context);
 
 $c = '';
-// TODO: also for post 
-if (! isset($_GET['category'])) {
+if (! filter_has_var(INPUT_GET, 'category') and ! filter_has_var(INPUT_POST, 'category')) {
     $c .= get_string('missingparameter', 'block_classmanager');
 } else {
-    $context = context_coursecat::instance($_GET['category']);
+    if (filter_has_var(INPUT_GET, 'category')) {
+        $categoryid = filter_input(INPUT_GET, 'category', FILTER_SANITIZE_NUMBER_INT);
+    } else {
+        $categoryid = filter_input(INPUT_POST, 'category', FILTER_SANITIZE_NUMBER_INT);
+    }
+    $context = context_coursecat::instance($categoryid);
     if (has_capability(PERMISSION, $context)) {
         $school = $DB->get_record('course_categories', array (
                 'id' => $_GET['category']
