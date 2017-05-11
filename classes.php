@@ -40,7 +40,7 @@ $c = '';
 $header = get_string('classespagetitle', 'block_classmanager');
 
 if (! filter_has_var(INPUT_GET, 'category') and ! filter_has_var(INPUT_POST, 'category')) {
-    $c .= "no category";
+    $c .= get_string('missingparameter', 'block_classmanager');
 } else {
     if (filter_has_var(INPUT_GET, 'category')) {
         $categoryid = filter_input(INPUT_GET, 'category', FILTER_SANITIZE_NUMBER_INT);
@@ -69,7 +69,7 @@ if (! filter_has_var(INPUT_GET, 'category') and ! filter_has_var(INPUT_POST, 'ca
                 ));
                 $c .= "<br><b>" . get_string("groupdeleted", "block_classmanager") . "</b><br>";
             } else {
-                $c = "berechtigungsfehler";
+                $c .= get_string('rightsproblem', 'block_classmanager');
             }
         }
         $c .= "<br><a href=\"" . $CFG->wwwroot . "/blocks/classmanager/editclass.php?category=" . $categoryid . "&classid=0\">";
@@ -102,7 +102,7 @@ if (! filter_has_var(INPUT_GET, 'category') and ! filter_has_var(INPUT_POST, 'ca
             $c .= get_string('noclassescreated', 'block_classmanager');
         }
     } else {
-        $c = 'berechtigungsfehler';
+        $c .= get_string('rightsproblem', 'block_classmanager');
     }
 }
 
@@ -113,4 +113,3 @@ echo $OUTPUT->header();
 echo $OUTPUT->blocks_for_region('content');
 echo $c;
 echo $OUTPUT->footer();
-

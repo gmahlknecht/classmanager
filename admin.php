@@ -35,6 +35,7 @@ $context = context_user::instance($USER->id);
 $PAGE->set_context($context);
 
 $c = '';
+// TODO: also for post 
 if (! isset($_GET['category'])) {
     $c .= get_string('missingparameter', 'block_classmanager');
 } else {
