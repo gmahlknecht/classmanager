@@ -104,7 +104,6 @@ class block_classmanager extends block_base {
         // TODO: remove Hilfe und Support!
         $result .= "<a href=\"" . $CFG->wwwroot . "/course/view.php?id=1194\">Hilfe und Support</a><br><br>";
         $this->content->text = $result;
-        $this->content->footer = '<small>Class Manager</small>';
         return $this->content;
     }
 
