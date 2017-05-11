@@ -90,7 +90,6 @@ if (! isset($_GET['category'])) {
         $c .= get_string('rightsproblem', 'block_classmanager');
     }
 }
-$c .= '<br><center><small>Class Manager</small></center>';
 
 $PAGE->set_title($header);
 $PAGE->set_heading($header);

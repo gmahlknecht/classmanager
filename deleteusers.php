@@ -133,10 +133,10 @@ if (! isset($_GET['category']) and ! isset($_POST['category'])) {
                 $c .= get_string('nousercreated', 'block_classmanager');
             }
         } else {
-            $c .= "<h1>Please select first the class</h1>";
+            $c .= get_string('selectfirstclass', 'block_classmanager');
         }
     } else {
-        $c .= 'Ich root - du nix';
+        $c .= get_string('rightsproblem', 'block_classmanager');
     }
 }
 

@@ -248,13 +248,15 @@ if (! filter_has_var(INPUT_GET, 'category') and ! filter_has_var(INPUT_POST, 'ca
                 $c .= $categoryid . "\">" . get_string('back') . "</a></td></tr>";
                 $c .= "</table></form>";
             } else {
+                // TODO: better error messages!
                 $c .= "1" . get_string('error');
             }
         } else {
+            // TODO: better error messages!
             $c .= "2" . get_string('error');
         }
     } else {
-        $c .= "ich root - du nix";
+        $c .= get_string('rightsproblem', 'block_classmanager');
     }
 }
 $PAGE->set_title($header);

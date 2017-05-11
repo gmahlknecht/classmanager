@@ -107,9 +107,8 @@ if (has_capability('moodle/user:editprofile', $context)) {
         $c .= get_string('schoolnotfound', 'block_classmanager');
     }
 } else {
-    $c .= 'Ich root - du nix';
+    $c .= get_string('rightsproblem', 'block_classmanager');
 }
-$c .= '<br><center><small>Class Manager by Stefan Raffeiner</small></center>';
 $PAGE->navbar->ignore_active();
 echo $OUTPUT->header();
 echo $OUTPUT->blocks_for_region('content');

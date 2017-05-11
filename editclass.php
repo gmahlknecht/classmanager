@@ -119,7 +119,7 @@ if (! isset($_GET['category']) and ! isset($_POST['category'])) {
             $c .= get_string('error');
         }
     } else {
-        $c .= "berechtigungsfehler";
+        $c .= get_string('rightsproblem', 'block_classmanager');
     }
 }
 $PAGE->set_title($header);

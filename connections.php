@@ -107,7 +107,7 @@ if (! isset($_GET['category']) and ! isset($_POST['category'])) {
             }
         }
     } else {
-        $c = 'berechtigungsfehler';
+        $c .= get_string('rightsproblem', 'block_classmanager');
     }
 }
 
