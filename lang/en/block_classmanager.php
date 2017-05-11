@@ -106,5 +106,5 @@ $string['none'] = 'nothing choosed';
 $string['createcourse'] = 'Create course';
 $string['emailchangenotice'] = 'Has to be changed by the user itself!';
 $string['rightsproblem'] = 'You have not the permission for this action!';
-$string['missingparameter']= 'Mandatory parameter missing!';
-$string['selectfirstclass']= 'Please select first the class!';
+$string['missingparameter'] = 'Mandatory parameter missing!';
+$string['selectfirstclass'] = 'Please select first the class!';

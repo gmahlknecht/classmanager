@@ -1,0 +1,9 @@
+Classmanager 
+
+Classmanager is a tool for managing users and classes of different schools. 
+The role school-manager has the rights to create classes and users and to assign the users to classes. 
+
+Classmanager was developed by Raffeiner Stefan 
+Adaptions by Giovanni Mahlknecht
+
+TODO: move contents of config.php to DB

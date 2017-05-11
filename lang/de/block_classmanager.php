@@ -109,5 +109,5 @@ $string['none'] = 'nichts ausgew&auml;hlt';
 $string['createcourse'] = 'neuen Kurs erstellen';
 $string['emailchangenotice'] = 'Muss vom Nutzer selbst ge&auml;ndert werden';
 $string['rightsproblem'] = 'Sie verfügen nicht über die notwendige Berechtigung!';
-$string['missingparameter']= 'Notwendiger Parameter fehlt!';
-$string['selectfirstclass']= 'Bitte zuerst eine Klasse ausw&uuml;hlen!';
+$string['missingparameter'] = 'Notwendiger Parameter fehlt!';
+$string['selectfirstclass'] = 'Bitte zuerst eine Klasse ausw&uuml;hlen!';

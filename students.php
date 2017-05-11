@@ -134,11 +134,12 @@ if (! filter_has_var(INPUT_GET, 'category') and ! filter_has_var(INPUT_POST, 'ca
                 }
                 $c .= "<tr>";
                 $c .= "<td>";
-                $linkedituser= $CFG->wwwroot . "/blocks/classmanager/editstudent.php?category=" . $categoryid . "&userid=" . $user->id;
+                $linkedituser = $CFG->wwwroot . "/blocks/classmanager/editstudent.php?category=" . $categoryid;
+                $linkedituser .= "&userid=" . $user->id;
                 $c .= "<a href=\"" .$linkedituser . "\">";
                 $c .= $user->lastname;
                 $c .= " ".$user->firstname;
-                // $c .= " ".  $user->lastlogin;
+                // TODO: add info for lastlogin $c .= " ".  $user->lastlogin;.
                 $c .= "</a> <td>";
                 $c .= "<td>" . $user->classname . "</td>";
                 $count ++;
