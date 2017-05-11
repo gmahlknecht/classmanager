@@ -24,5 +24,5 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$plugin->version = 2013090301;
+$plugin->version = 2017051101;
 $plugin->component = 'block_classmanager';

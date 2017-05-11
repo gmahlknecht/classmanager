@@ -35,7 +35,7 @@ $PAGE->set_context($context);
 $c = '';
 $header = get_string('classespagetitle', 'block_classmanager');
 if (! isset($_GET['category']) and ! isset($_POST['category'])) {
-    $c .= "no category";
+    $c .= get_string('missingparameter', 'block_classmanager');
 } else {
     if (isset($_GET['category'])) {
         $categoryid = $_GET['category'];

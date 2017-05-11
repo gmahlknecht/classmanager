@@ -36,7 +36,7 @@ $c = '';
 $header = get_string('classespagetitle', 'block_classmanager');
 
 if (! filter_has_var(INPUT_GET, 'category') and ! filter_has_var(INPUT_POST, 'category')) {
-    $c .= "no category";
+    $c .= get_string('missingparameter', 'block_classmanager');
 } else {
     if (filter_has_var(INPUT_GET, 'category')) {
         $categoryid = filter_input(INPUT_GET, 'category', FILTER_SANITIZE_NUMBER_INT);
