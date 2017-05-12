@@ -45,15 +45,17 @@ if (! filter_has_var(INPUT_GET, 'category') and ! filter_has_var(INPUT_POST, 'ca
     }
     $context = context_coursecat::instance($categoryid);
     if (has_capability(PERMISSION, $context)) {
-        $header = get_string('classespagetitle', 'block_classmanager');
         $school = $DB->get_record('course_categories', array (
                 'id' => $categoryid
         ));
-        $desturl = new moodle_url($CFG->wwwroot . '/blocks/classmanager/admin.php?category=' . $categoryid);
-        $PAGE->navbar->add(get_string('manage', 'block_classmanager') . ' ' . $school->name, $desturl);
-        $PAGE->navbar->add(get_string('students', 'block_classmanager'));
-        $c .= get_string('studentsdescription', 'block_classmanager');
+        $navbardesturl = new moodle_url($CFG->wwwroot . '/blocks/classmanager/admin.php?category=' . $categoryid);
+        $PAGE->navbar->add(get_string('manage', 'block_classmanager') . ' ' . $school->name, $navbardesturl);
+        $PAGE->navbar->add(get_string('managestudents', 'block_classmanager'));
+//         $c .= get_string('studentsdescription', 'block_classmanager').'<br>';
+        $c .= "<h5><a href=\"" . $CFG->wwwroot . "/blocks/classmanager/editstudent.php?category=";
+        $c .= $categoryid . "&userid=0\">" . get_string('createnewuser', 'block_classmanager') . "</a></h5>";
         if (filter_has_var(INPUT_GET, 'action') && filter_input(INPUT_GET, 'action', FILTER_SANITIZE_STRING) == 'DELETE') {
+            // TODO: check if needed, think that we removed delete capability from students list!
             $userid = filter_input(INPUT_GET, 'userid', FILTER_SANITIZE_NUMBER_INT);
             $sqlstring = 'SELECT u.id as userid, u.username, u.auth, u.firstname , u.lastname, u.id, c.id as classe, ';
             $sqlstring .= 'c.idnumber as classname, u.email, u.lastlogin ';
@@ -77,14 +79,14 @@ if (! filter_has_var(INPUT_GET, 'category') and ! filter_has_var(INPUT_POST, 'ca
                 user_delete_user($usertodelete);
                 $c .= "<br><b>" . get_string("userdeleted", "block_classmanager") . "</b><br>";
             } else {
-                $c = "berechtigungsfehler";
+                $c .= get_string('rightsproblem', 'block_classmanager');
             }
         }
         $cohorts = $DB->get_records('cohort', array (
                 'contextid' => $context->id
         ), 'name');
         if (is_array($cohorts)) {
-            $c .= ".<br>" . get_string('choosecohort', 'block_classmanager') . "<br>";
+            $c .= "<h4>" . get_string('choosecohort', 'block_classmanager').": ";
             foreach ($cohorts as $cohort) {
                 if (filter_has_var(INPUT_GET, 'filter') and
                         filter_input(INPUT_GET, 'filter', FILTER_SANITIZE_NUMBER_INT) == $cohort->id) {
@@ -94,7 +96,7 @@ if (! filter_has_var(INPUT_GET, 'category') and ! filter_has_var(INPUT_POST, 'ca
                     $c .= $categoryid . '&filter=' . $cohort->id . '">' . $cohort->name . '</a>, ';
                 }
             }
-            $c .= "<br>";
+            $c .= "</h4>";
         }
         if (filter_has_var(INPUT_GET, 'filter')) {
             // Filter by class id!
@@ -121,12 +123,11 @@ if (! filter_has_var(INPUT_GET, 'category') and ! filter_has_var(INPUT_POST, 'ca
         }
         $numofusers = count($users);
         if ($numofusers == 0) {
-            $c .= get_string('nousers', 'block_classmanager');
-        }
-        $c .= "<br><a href=\"" . $CFG->wwwroot . "/blocks/classmanager/editstudent.php?category=";
-        $c .= $categoryid . "&userid=0\">" . get_string('createnewuser', 'block_classmanager') . "</a>";
-        if (is_array($users)) {
-            $c .= "<table>";
+            $c .= "<h4>".get_string('nousers', 'block_classmanager')."</h4>";
+        } 
+        elseif (is_array($users)) {
+            // TODO: localise strings
+            $c .= "<table><tr><th>User</th><th>Group</th></tr>";
             $count = 0;
             foreach ($users as $user) {
                 if ($count > 0) {
@@ -146,7 +147,7 @@ if (! filter_has_var(INPUT_GET, 'category') and ! filter_has_var(INPUT_POST, 'ca
             }
             $c .= "</table>";
         } else {
-            $c .= get_string('nousercreated', 'block_classmanager');
+            $c .= print_error('nousercreated', 'block_classmanager');
         }
     } else {
         $c .= get_string('rightsproblem', 'block_classmanager');
