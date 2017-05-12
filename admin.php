@@ -60,7 +60,7 @@ if (! filter_has_var(INPUT_GET, 'category') and ! filter_has_var(INPUT_POST, 'ca
                     'cohortid' => $class->id
             ));
         }
-        $c .= get_string('managerpagedescription', 'block_classmanager');
+        $c .= "<h2>".get_string('managerpagedescription', 'block_classmanager')."</h2>";
         $c .= "<table>";
         $c .= "<tr>";
         $c .= "<td><a href=\"" . $CFG->wwwroot . "/blocks/classmanager/import.php?category=" . $_GET['category'] . "\">";
