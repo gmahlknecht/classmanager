@@ -122,9 +122,8 @@ if (! filter_has_var(INPUT_GET, 'category') and ! filter_has_var(INPUT_POST, 'ca
         $numofusers = count($users);
         if ($numofusers == 0) {
             $c .= "<h4>".get_string('nousers', 'block_classmanager')."</h4>";
-        } 
-        elseif (is_array($users)) {
-            // TODO: localise strings
+        } else if (is_array($users)) {
+            // TODO: localize!
             $c .= "<table><tr><th>User</th><th>Group</th><th>Last login</th></tr>";
             $count = 0;
             foreach ($users as $user) {
@@ -141,8 +140,8 @@ if (! filter_has_var(INPUT_GET, 'category') and ! filter_has_var(INPUT_POST, 'ca
                 $c .= "</a> </td>";
                 $c .= "<td>" . $user->classname . "</td>";
                 $lastlog = "never logged in";
-                if($user->lastlogin!=0) {
-                    $lastlog=date("Y-m-d", $user->lastlogin);
+                if ($user->lastlogin != 0) {
+                    $lastlog = date("Y-m-d", $user->lastlogin);
                 }
                 $c .= "<td>" . $lastlog . "</td>";
                 $count ++;

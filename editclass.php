@@ -82,7 +82,7 @@ if (! isset($_GET['category']) and ! isset($_POST['category'])) {
                 $c .= "<b><font color=\"green\">" . get_string('saved', 'block_classmanager') . "</font></b>";
             }
             if (is_object($class)) {
-                $navbarmanageschool= new moodle_url($CFG->wwwroot . '/blocks/classmanager/admin.php?category=' . $categoryid);
+                $navbarmanageschool = new moodle_url($CFG->wwwroot . '/blocks/classmanager/admin.php?category=' . $categoryid);
                 $PAGE->navbar->add(get_string('manage', 'block_classmanager') . ' ' . $school->name, $navbarmanageschool);
                 $navbarmanageclasses = new moodle_url($CFG->wwwroot . '/blocks/classmanager/classes.php?category=' . $categoryid);
                 $PAGE->navbar->add(get_string('classespagetitle', 'block_classmanager'), $navbarmanageclasses);

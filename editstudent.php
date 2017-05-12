@@ -238,10 +238,11 @@ if (! filter_has_var(INPUT_GET, 'category') and ! filter_has_var(INPUT_POST, 'ca
                 $c .= "<tr><td></td>";
                 $c .= "<td><input type=\"submit\" value=\"" . get_string('submit') . "\"</td>";
                 $c .= "</tr>";
-                $deletelink = "<a href=\"#\" onclick=\"var answer = confirm('" . get_string("areyousure", "block_classmanager") . "');";
-                $deletelink.= "if (answer){";
-                $deletelink.= "window.location = '" . $CFG->wwwroot . "/blocks/classmanager/students.php?action=DELETE&userid=";
-                $deletelink.= $userid . "&category=" . $categoryid . "';}\">" . get_string('delete') . "</a>";
+                $deletelink = "<a href=\"#\" onclick=\"var answer = confirm('";
+                $deletelink .= get_string("areyousure", "block_classmanager") . "');";
+                $deletelink .= "if (answer){";
+                $deletelink .= "window.location = '" . $CFG->wwwroot . "/blocks/classmanager/students.php?action=DELETE&userid=";
+                $deletelink .= $userid . "&category=" . $categoryid . "';}\">" . get_string('delete') . "</a>";
                 $backlink = "<a href=\"" . $CFG->wwwroot . "/blocks/classmanager/students.php?category=";
                 $backlink .= $categoryid . "\">" . get_string('back') . "</a>";
                 $c .= "<tr><td></td><td>".$deletelink."</td></tr>";

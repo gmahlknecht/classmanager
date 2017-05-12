@@ -129,8 +129,8 @@ if (! isset($_GET['category']) and ! isset($_POST['category'])) {
                     $c .= "<td>" . $user->lastname . " " . $user->firstname . "</td>";
                     $c .= "<td>" . $user->classname . "</td>";
                     $lastlog = "never logged in";
-                    if($user->lastlogin!=0) {
-                        $lastlog=date("Y-m-d", $user->lastlogin);
+                    if ($user->lastlogin != 0) {
+                        $lastlog = date("Y-m-d", $user->lastlogin);
                     }
                     $c .= "<td>" . $lastlog . "</td>";
                     $count ++;
