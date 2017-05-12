@@ -22,7 +22,7 @@
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-$string['deleteusers'] = 'Delete users';
+$string['deleteusers'] = 'Delete Users';
 $string['deleteusersdescription'] = 'Here you can delete users';
 $string['deleteuserschoosecohort'] = 'Select the class of the users to delete';
 $string['deleteusersdeletelink'] = 'Delete all users of this class';
@@ -52,7 +52,7 @@ $string['classes'] = 'Classes';
 $string['students'] = 'Students';
 $string['youhave'] = 'You have';
 $string['manageclasses'] = 'Manage Classes';
-$string['managestudents'] = 'Manage Students';
+$string['managestudents'] = 'Manage Users';
 $string['managerpagetitle'] = 'Class Manager Admin Page';
 $string['importstudents'] = 'Import students';
 $string['theeaysiestway'] = 'The eaysiest way to start';
@@ -73,7 +73,7 @@ $string['numberofstudents'] = 'Number of Students';
 $string['classnamenotconform'] = 'Class shortname not conform';
 $string['studentsdescription'] = 'Here you can manage your students';
 $string['nousercreated'] = 'No user has been created yet';
-$string['createnewuser'] = 'Create new student';
+$string['createnewuser'] = 'Add new user...';
 $string['editstudentdescription'] = 'Here you can edit a student';
 $string['noclass'] = 'No Class';
 $string['notalldata'] = 'Not entered all data';
@@ -81,7 +81,7 @@ $string['choosecohort'] = 'Choose class to add a filter';
 $string['nousers'] = 'No user';
 $string['toworktogether'] = 'Allows you to work together with other schools';
 $string['manageconnections'] = 'Connect with topic';
-$string['studentpagetitle'] = 'Edit students';
+$string['studentpagetitle'] = 'Manage users';
 $string['connectionspagetitle'] = 'Edit connections';
 $string['connections'] = 'Connections';
 $string['connectionsdescription'] = 'Edit Connections';
