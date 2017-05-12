@@ -51,7 +51,6 @@ if (! filter_has_var(INPUT_GET, 'category') and ! filter_has_var(INPUT_POST, 'ca
         $navbardesturl = new moodle_url($CFG->wwwroot . '/blocks/classmanager/admin.php?category=' . $categoryid);
         $PAGE->navbar->add(get_string('manage', 'block_classmanager') . ' ' . $school->name, $navbardesturl);
         $PAGE->navbar->add(get_string('managestudents', 'block_classmanager'));
-//         $c .= get_string('studentsdescription', 'block_classmanager').'<br>';
         $c .= "<h5><a href=\"" . $CFG->wwwroot . "/blocks/classmanager/editstudent.php?category=";
         $c .= $categoryid . "&userid=0\">" . get_string('createnewuser', 'block_classmanager') . "</a></h5>";
         if (filter_has_var(INPUT_GET, 'action') && filter_input(INPUT_GET, 'action', FILTER_SANITIZE_STRING) == 'DELETE') {
