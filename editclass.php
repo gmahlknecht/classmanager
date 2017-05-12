@@ -52,8 +52,6 @@ if (! isset($_GET['category']) and ! isset($_POST['category'])) {
         $school = $DB->get_record('course_categories', array (
                 'id' => $categoryid
         ));
-        $header = get_string('classespagetitle', 'block_classmanager');
-        $c .= get_string('editclassdescription', 'block_classmanager') . "<br>";
         if (isset($classid)) {
             if ($classid > 0) {
                 $class = $DB->get_record('cohort', array (
@@ -84,10 +82,10 @@ if (! isset($_GET['category']) and ! isset($_POST['category'])) {
                 $c .= "<b><font color=\"green\">" . get_string('saved', 'block_classmanager') . "</font></b>";
             }
             if (is_object($class)) {
-                $newurl = new moodle_url($CFG->wwwroot . '/blocks/classmanager/admin.php?category=' . $categoryid);
-                $PAGE->navbar->add(get_string('manage', 'block_classmanager') . ' ' . $school->name, $newurl);
-                $newurl = new moodle_url($CFG->wwwroot . '/blocks/classmanager/classes.php?category=' . $categoryid);
-                $PAGE->navbar->add(get_string('classes', 'block_classmanager'), $newurl);
+                $navbarmanageschool= new moodle_url($CFG->wwwroot . '/blocks/classmanager/admin.php?category=' . $categoryid);
+                $PAGE->navbar->add(get_string('manage', 'block_classmanager') . ' ' . $school->name, $navbarmanageschool);
+                $navbarmanageclasses = new moodle_url($CFG->wwwroot . '/blocks/classmanager/classes.php?category=' . $categoryid);
+                $PAGE->navbar->add(get_string('classespagetitle', 'block_classmanager'), $navbarmanageclasses);
                 $PAGE->navbar->add($class->name != '' ? $class->name : get_string('new'));
                 if (! (preg_match("/^([1-5])([A-Z]{1,4})/", $class->idnumber) ||
                         $class->idnumber == 'TE' || $class->idnumber == 'PE') &&
@@ -108,9 +106,13 @@ if (! isset($_GET['category']) and ! isset($_POST['category'])) {
                 $c .= "<td><input type=\"text\" name=\"idnumber\" value=\"";
                 $c .= $class->idnumber . "\"></td></tr>";
                 $c .= "<tr>";
+                $c .= "<td></td>";
+                $c .= "<td><input type=\"submit\" value=\"" . get_string('submit') . "\"></td>";
+                $c .= "</tr>";
+                $c .= "<tr>";
+                $c .= "<td></td>";
                 $c .= "<td><a href=\"" . $CFG->wwwroot . "/blocks/classmanager/classes.php?category=" . $categoryid . "\">";
                 $c .= get_string('back') . "</a></td>";
-                $c .= "<td><input type=\"submit\" value=\"" . get_string('submit') . "\"></td>";
                 $c .= "</tr>";
                 $c .= "</table>";
                 $c .= "</form>";
