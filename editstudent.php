@@ -33,7 +33,7 @@ $PAGE->blocks->add_region('content');
 $context = context_user::instance($USER->id);
 $PAGE->set_context($context);
 $c = '';
-$header = get_string('classespagetitle', 'block_classmanager');
+$pagetitle = get_string('studentpagetitle', 'block_classmanager');
 
 if (! filter_has_var(INPUT_GET, 'category') and ! filter_has_var(INPUT_POST, 'category')) {
     $c .= get_string('missingparameter', 'block_classmanager');
@@ -66,7 +66,6 @@ if (! filter_has_var(INPUT_GET, 'category') and ! filter_has_var(INPUT_POST, 'ca
         $user = new stdClass();
     }
     if (has_capability(PERMISSION, $context) and (count($user) > 0 or $userid == 0)) {
-        $header = get_string('classespagetitle', 'block_classmanager');
         $school = $DB->get_record('course_categories', array (
                 'id' => $categoryid
         ));
@@ -189,11 +188,11 @@ if (! filter_has_var(INPUT_GET, 'category') and ! filter_has_var(INPUT_POST, 'ca
             }
             if (is_object($user)) {
                 if ($userid > 0) {
-                    $navbardesturl = new moodle_url($CFG->wwwroot . '/blocks/classmanager/admin.php?category=' . $categoryid);
-                    $PAGE->navbar->add(get_string('manage', 'block_classmanager') . ' ' . $school->name, $navbardesturl);
+                    $navbarmanageschool = new moodle_url($CFG->wwwroot . '/blocks/classmanager/admin.php?category=' . $categoryid);
+                    $PAGE->navbar->add(get_string('manage', 'block_classmanager') . ' ' . $school->name, $navbarmanageschool);
                 }
-                $navbardesturl = new moodle_url($CFG->wwwroot . '/blocks/classmanager/students.php?category=' . $categoryid);
-                $PAGE->navbar->add(get_string('students', 'block_classmanager'), $navbardesturl);
+                $navbarmanageusers = new moodle_url($CFG->wwwroot . '/blocks/classmanager/students.php?category=' . $categoryid);
+                $PAGE->navbar->add(get_string('studentpagetitle', 'block_classmanager'), $navbarmanageusers);
                 $PAGE->navbar->add($user->lastname . " " . $user->firstname);
                 $classes = $DB->get_records('cohort', array (
                         'contextid' => $context->id
@@ -259,8 +258,8 @@ if (! filter_has_var(INPUT_GET, 'category') and ! filter_has_var(INPUT_POST, 'ca
         $c .= get_string('rightsproblem', 'block_classmanager');
     }
 }
-$PAGE->set_title($header);
-$PAGE->set_heading($header);
+$PAGE->set_title($pagetitle);
+$PAGE->set_heading($pagetitle);
 $PAGE->navbar->ignore_active();
 echo $OUTPUT->header();
 echo $OUTPUT->blocks_for_region('content');
