@@ -96,6 +96,7 @@ if (! isset($_GET['category']) and ! isset($_POST['category'])) {
                     $c .= '&filter=' . $cohort->id . '">' . $cohort->name . '</a>, ';
                 }
             }
+            $c .= "<br>";
         }
         if (isset($_GET['filter'])) {
             $sqlstring = 'SELECT u.id, u.firstname , u.lastname, c.id as classe, c.idnumber as classname, u.lastlogin ';
