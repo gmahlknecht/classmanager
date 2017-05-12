@@ -235,15 +235,17 @@ if (! filter_has_var(INPUT_GET, 'category') and ! filter_has_var(INPUT_POST, 'ca
                 }
                 $c .= "	</select></td>";
                 $c .= "</tr>";
-                $c .= "<tr>";
-                $c .= "<td><a href=\"#\" onclick=\"var answer = confirm('" . get_string("areyousure", "block_classmanager") . "');";
-                $c .= "if (answer){";
-                $c .= "window.location = '" . $CFG->wwwroot . "/blocks/classmanager/students.php?action=DELETE&userid=";
-                $c .= $userid . "&category=" . $categoryid . "';}\">" . get_string('delete') . "</a></td>";
+                $c .= "<tr><td></td>";
                 $c .= "<td><input type=\"submit\" value=\"" . get_string('submit') . "\"</td>";
                 $c .= "</tr>";
-                $c .= "<tr><td></td><td><a href=\"" . $CFG->wwwroot . "/blocks/classmanager/students.php?category=";
-                $c .= $categoryid . "\">" . get_string('back') . "</a></td></tr>";
+                $deletelink = "<a href=\"#\" onclick=\"var answer = confirm('" . get_string("areyousure", "block_classmanager") . "');";
+                $deletelink.= "if (answer){";
+                $deletelink.= "window.location = '" . $CFG->wwwroot . "/blocks/classmanager/students.php?action=DELETE&userid=";
+                $deletelink.= $userid . "&category=" . $categoryid . "';}\">" . get_string('delete') . "</a>";
+                $backlink = "<a href=\"" . $CFG->wwwroot . "/blocks/classmanager/students.php?category=";
+                $backlink .= $categoryid . "\">" . get_string('back') . "</a>";
+                $c .= "<tr><td></td><td>".$deletelink."</td></tr>";
+                $c .= "<tr><td></td><td>".$backlink."</td></tr>";
                 $c .= "</table></form>";
             } else {
                 // TODO: better error messages: user is not a valid user object!
