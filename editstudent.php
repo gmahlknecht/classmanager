@@ -189,11 +189,11 @@ if (! filter_has_var(INPUT_GET, 'category') and ! filter_has_var(INPUT_POST, 'ca
             }
             if (is_object($user)) {
                 if ($userid > 0) {
-                    $desturl = new moodle_url($CFG->wwwroot . '/blocks/classmanager/admin.php?category=' . $categoryid);
-                    $PAGE->navbar->add(get_string('manage', 'block_classmanager') . ' ' . $school->name, $desturl);
+                    $navbardesturl = new moodle_url($CFG->wwwroot . '/blocks/classmanager/admin.php?category=' . $categoryid);
+                    $PAGE->navbar->add(get_string('manage', 'block_classmanager') . ' ' . $school->name, $navbardesturl);
                 }
-                $desturl = new moodle_url($CFG->wwwroot . '/blocks/classmanager/students.php?category=' . $categoryid);
-                $PAGE->navbar->add(get_string('students', 'block_classmanager'), $desturl);
+                $navbardesturl = new moodle_url($CFG->wwwroot . '/blocks/classmanager/students.php?category=' . $categoryid);
+                $PAGE->navbar->add(get_string('students', 'block_classmanager'), $navbardesturl);
                 $PAGE->navbar->add($user->lastname . " " . $user->firstname);
                 $classes = $DB->get_records('cohort', array (
                         'contextid' => $context->id
@@ -248,11 +248,11 @@ if (! filter_has_var(INPUT_GET, 'category') and ! filter_has_var(INPUT_POST, 'ca
                 $c .= $categoryid . "\">" . get_string('back') . "</a></td></tr>";
                 $c .= "</table></form>";
             } else {
-                // TODO: better error messages!
+                // TODO: better error messages: user is not a valid user object!
                 $c .= "1" . get_string('error');
             }
         } else {
-            // TODO: better error messages!
+            // TODO: better error messages: userid is not set - missing parameter?
             $c .= "2" . get_string('error');
         }
     } else {
