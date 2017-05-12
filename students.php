@@ -48,8 +48,8 @@ if (! filter_has_var(INPUT_GET, 'category') and ! filter_has_var(INPUT_POST, 'ca
         $school = $DB->get_record('course_categories', array (
                 'id' => $categoryid
         ));
-        $navbarmanageschool = new moodle_url($CFG->wwwroot . '/blocks/classmanager/admin.php?category=' . $categoryid);
-        $PAGE->navbar->add(get_string('manage', 'block_classmanager') . ' ' . $school->name, $navbarmanageschool);
+        $navbardesturl = new moodle_url($CFG->wwwroot . '/blocks/classmanager/admin.php?category=' . $categoryid);
+        $PAGE->navbar->add(get_string('manage', 'block_classmanager') . ' ' . $school->name, $navbardesturl);
         $PAGE->navbar->add(get_string('managestudents', 'block_classmanager'));
         $c .= "<h5><a href=\"" . $CFG->wwwroot . "/blocks/classmanager/editstudent.php?category=";
         $c .= $categoryid . "&userid=0\">" . get_string('createnewuser', 'block_classmanager') . "</a></h5>";
@@ -126,7 +126,7 @@ if (! filter_has_var(INPUT_GET, 'category') and ! filter_has_var(INPUT_POST, 'ca
         } 
         elseif (is_array($users)) {
             // TODO: localise strings
-            $c .= "<table><tr><th>User</th><th>Group</th></tr>";
+            $c .= "<table><tr><th>User</th><th>Group</th><th>Last login</th></tr>";
             $count = 0;
             foreach ($users as $user) {
                 if ($count > 0) {
@@ -139,9 +139,13 @@ if (! filter_has_var(INPUT_GET, 'category') and ! filter_has_var(INPUT_POST, 'ca
                 $c .= "<a href=\"" .$linkedituser . "\">";
                 $c .= $user->lastname;
                 $c .= " ".$user->firstname;
-                // TODO: add info for lastlogin $c .= " ".  $user->lastlogin;.
-                $c .= "</a> <td>";
+                $c .= "</a> </td>";
                 $c .= "<td>" . $user->classname . "</td>";
+                $lastlog = "never logged in";
+                if($user->lastlogin!=0) {
+                    $lastlog=date("Y-m-d", $user->lastlogin);
+                }
+                $c .= "<td>" . $lastlog . "</td>";
                 $count ++;
             }
             $c .= "</table>";
