@@ -46,8 +46,8 @@ if (! isset($_GET['category']) and ! isset($_POST['category'])) {
         $school = $DB->get_record('course_categories', array (
                 'id' => $categoryid
         ));
-        $navbardesturl = new moodle_url($CFG->wwwroot . '/blocks/classmanager/admin.php?category=' . $categoryid);
-        $PAGE->navbar->add(get_string('manage', 'block_classmanager') . ' ' . $school->name, $navbardesturl);
+        $navbarmanageschool = new moodle_url($CFG->wwwroot . '/blocks/classmanager/admin.php?category=' . $categoryid);
+        $PAGE->navbar->add(get_string('manage', 'block_classmanager') . ' ' . $school->name, $navbarmanageschool);
         $PAGE->navbar->add(get_string('import', 'block_classmanager'));
         if (isset($_FILES['importfile'])) {
             $file = fopen($_FILES['importfile']['tmp_name'], "r");
