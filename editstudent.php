@@ -69,7 +69,6 @@ if (! filter_has_var(INPUT_GET, 'category') and ! filter_has_var(INPUT_POST, 'ca
         $school = $DB->get_record('course_categories', array (
                 'id' => $categoryid
         ));
-        $c .= get_string('editstudentdescription', 'block_classmanager') . "<br>";
         require('../../user/lib.php');
         require('../../cohort/lib.php');
         $issetlastname = filter_has_var(INPUT_POST, 'lastname');
