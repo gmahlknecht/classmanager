@@ -85,7 +85,7 @@ if (! filter_has_var(INPUT_GET, 'category') and ! filter_has_var(INPUT_POST, 'ca
                 'contextid' => $context->id
         ), 'name');
         if (is_array($cohorts)) {
-            $c .= "<h4>" . get_string('choosecohort', 'block_classmanager').": ";
+            $c .= "<h4>" . get_string('choosecohort', 'block_classmanager').": </h4>";
             foreach ($cohorts as $cohort) {
                 if (filter_has_var(INPUT_GET, 'filter') and
                         filter_input(INPUT_GET, 'filter', FILTER_SANITIZE_NUMBER_INT) == $cohort->id) {
@@ -95,7 +95,6 @@ if (! filter_has_var(INPUT_GET, 'category') and ! filter_has_var(INPUT_POST, 'ca
                     $c .= $categoryid . '&filter=' . $cohort->id . '">' . $cohort->name . '</a>, ';
                 }
             }
-            $c .= "</h4>";
         }
         if (filter_has_var(INPUT_GET, 'filter')) {
             // Filter by class id!
