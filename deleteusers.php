@@ -87,7 +87,7 @@ if (! isset($_GET['category']) and ! isset($_POST['category'])) {
                 'contextid' => $context->id
         ), 'name');
         if (is_array($cohorts)) {
-            $c .= "<h5>" . get_string('deleteuserschoosecohort', 'block_classmanager');
+            $c .= "<h5>" . get_string('deleteuserschoosecohort', 'block_classmanager') .": </h5>";
             foreach ($cohorts as $cohort) {
                 if (isset($_GET['filter']) and $_GET['filter'] == $cohort->id) {
                     $c .= $cohort->name . ', ';
@@ -96,7 +96,6 @@ if (! isset($_GET['category']) and ! isset($_POST['category'])) {
                     $c .= '&filter=' . $cohort->id . '">' . $cohort->name . '</a>, ';
                 }
             }
-            $c .= "</h5>";
         }
         if (isset($_GET['filter'])) {
             $sqlstring = 'SELECT u.id, u.firstname , u.lastname, c.id as classe, c.idnumber as classname, u.lastlogin ';
