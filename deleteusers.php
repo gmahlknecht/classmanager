@@ -15,7 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Classmanager delete users
+ * Classmanager delete the users of a cohort
  *
  * @package block_classmanager
  * @copyright 2017 Stefan Raffeiner, Giovanni Mahlknecht
@@ -51,10 +51,10 @@ if (! isset($_GET['category']) and ! isset($_POST['category'])) {
         $school = $DB->get_record('course_categories', array (
                 'id' => $categoryid
         ));
-        $newurl = new moodle_url($CFG->wwwroot . '/blocks/classmanager/admin.php?category=' . $categoryid);
-        $PAGE->navbar->add(get_string('manage', 'block_classmanager') . ' ' . $school->name, $newurl);
-        $PAGE->navbar->add(get_string('deleteusers', 'block_classmanager'));
-        $c .= get_string('deleteusersdescription', 'block_classmanager');
+        $navbarmanageschool = new moodle_url($CFG->wwwroot . '/blocks/classmanager/admin.php?category=' . $categoryid);
+        $PAGE->navbar->add(get_string('manage', 'block_classmanager') . ' ' . $school->name, $navbarmanageschool);
+        $PAGE->navbar->add(get_string('deleteuserspagetitle', 'block_classmanager'));
+        $c .= "<h3>".get_string('deleteusersdescription', 'block_classmanager')."</h3>";
         if (isset($_GET['action']) && $_GET['action'] == 'DELETE' && isset($_GET['filter'])) {
             $sqlstring = 'SELECT u.id as userid, u.username, u.auth, u.firstname , u.lastname, c.id as classe, ';
             $sqlstring .= 'c.idnumber as classname, u.email ';
@@ -87,7 +87,7 @@ if (! isset($_GET['category']) and ! isset($_POST['category'])) {
                 'contextid' => $context->id
         ), 'name');
         if (is_array($cohorts)) {
-            $c .= "<br>" . get_string('deleteuserschoosecohort', 'block_classmanager') . "<br>";
+            $c .= "<h5>" . get_string('deleteuserschoosecohort', 'block_classmanager');
             foreach ($cohorts as $cohort) {
                 if (isset($_GET['filter']) and $_GET['filter'] == $cohort->id) {
                     $c .= $cohort->name . ', ';
@@ -96,7 +96,7 @@ if (! isset($_GET['category']) and ! isset($_POST['category'])) {
                     $c .= '&filter=' . $cohort->id . '">' . $cohort->name . '</a>, ';
                 }
             }
-            $c .= "<br>";
+            $c .= "</h5>";
         }
         if (isset($_GET['filter'])) {
             $sqlstring = 'SELECT u.id, u.firstname , u.lastname, c.id as classe, c.idnumber as classname ';
@@ -118,14 +118,15 @@ if (! isset($_GET['category']) and ! isset($_POST['category'])) {
                 $c .= "&filter=" . $_GET['filter'] . "';}\">" . get_string('deleteusersdeletelink', 'block_classmanager') . "</a>";
             }
             if (is_array($users)) {
-                $c .= "<table>";
+                // TODO: localize.
+                $c .= "<table><tr><th>User</th><th>Klasse</th></tr>";
                 $count = 0;
                 foreach ($users as $user) {
                     if ($count > 0) {
                         $c .= "</tr>";
                     }
                     $c .= "<tr>";
-                    $c .= "<td>" . $user->lastname . " " . $user->firstname . " " . $user->classname . "</td>";
+                    $c .= "<td>" . $user->lastname . " " . $user->firstname . "</td><td>" . $user->classname . "</td>";
                     $count ++;
                 }
                 $c .= "</table>";
