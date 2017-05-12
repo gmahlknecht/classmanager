@@ -99,7 +99,7 @@ if (! isset($_GET['category']) and ! isset($_POST['category'])) {
             $c .= "</h5>";
         }
         if (isset($_GET['filter'])) {
-            $sqlstring = 'SELECT u.id, u.firstname , u.lastname, c.id as classe, c.idnumber as classname ';
+            $sqlstring = 'SELECT u.id, u.firstname , u.lastname, c.id as classe, c.idnumber as classname, u.lastlogin ';
             $sqlstring .= 'FROM ' . $CFG->prefix . 'user u, ' . $CFG->prefix . 'cohort_members m, ' . $CFG->prefix . 'cohort c ';
             $sqlstring .= 'WHERE u.id = m.userid ';
             $sqlstring .= 'AND m.cohortid = c.id ';
@@ -126,7 +126,13 @@ if (! isset($_GET['category']) and ! isset($_POST['category'])) {
                         $c .= "</tr>";
                     }
                     $c .= "<tr>";
-                    $c .= "<td>" . $user->lastname . " " . $user->firstname . "</td><td>" . $user->classname . "</td>";
+                    $c .= "<td>" . $user->lastname . " " . $user->firstname . "</td>";
+                    $c .= "<td>" . $user->classname . "</td>";
+                    $lastlog = "never logged in";
+                    if($user->lastlogin!=0) {
+                        $lastlog=date("Y-m-d", $user->lastlogin);
+                    }
+                    $c .= "<td>" . $lastlog . "</td>";
                     $count ++;
                 }
                 $c .= "</table>";
