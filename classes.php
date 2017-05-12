@@ -17,8 +17,7 @@
 /**
  * List all classes
  *
- * @package contrib
- * @subpackage block_classmanager
+ * @package cblock_classmanager
  * @copyright 2017 Stefan Raffeiner, Giovanni Mahlknecht
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -54,8 +53,7 @@ if (! filter_has_var(INPUT_GET, 'category') and ! filter_has_var(INPUT_POST, 'ca
         ));
         $PAGE->navbar->add(get_string('manage', 'block_classmanager') . ' ' . $school->name,
                 new moodle_url($CFG->wwwroot . '/blocks/classmanager/admin.php?category=' . $categoryid));
-        $PAGE->navbar->add(get_string('classes', 'block_classmanager'));
-        $c .= get_string('classdescription', 'block_classmanager');
+        $PAGE->navbar->add(get_string('manageclasses', 'block_classmanager'));
         $context = context_coursecat::instance($categoryid);
         if (filter_has_var(INPUT_GET, 'action') && filter_input(INPUT_GET, 'action', FILTER_SANITIZE_STRING) == 'DELETE') {
             $classid = filter_input(INPUT_GET, 'classid', FILTER_SANITIZE_NUMBER_INT);
@@ -72,29 +70,29 @@ if (! filter_has_var(INPUT_GET, 'category') and ! filter_has_var(INPUT_POST, 'ca
                 $c .= get_string('rightsproblem', 'block_classmanager');
             }
         }
-        $c .= "<br><a href=\"" . $CFG->wwwroot . "/blocks/classmanager/editclass.php?category=" . $categoryid . "&classid=0\">";
-        $c .= get_string('newclass', 'block_classmanager') . "</a><br>";
+        $c .= "<h5><a href=\"" . $CFG->wwwroot . "/blocks/classmanager/editclass.php?category=" . $categoryid . "&classid=0\">";
+        $c .= get_string('newclass', 'block_classmanager') . "</a></h5>";
         $classes = $DB->get_records('cohort', array (
                 'contextid' => $context->id
         ), 'name');
         if (is_array($classes)) {
-            $c .= "<table>";
+            // TODO: localize!
+            $c .= "<table><tr><th>Class</th><th>".get_string("enroledusers", "block_classmanager")."</th></tr>";
             foreach ($classes as $class) {
                 $studentsnum = $DB->count_records('cohort_members', array (
                         'cohortid' => $class->id
                 ));
                 if ($studentsnum == 0) {
-                    $studentstable = "";
+                    $enrolleduserscell = "0";
                 } else {
-                    $studentstable = "<a href=\"" . $CFG->wwwroot . "/blocks/classmanager/students.php?category=";
-                    $studentstable .= $categoryid . "&filter=" . $class->id . "\">" . $studentsnum . " ";
-                    $studentstable .= get_string("enroledusers", "block_classmanager") . "</a>";
+                    $enrolleduserscell = "<a href=\"" . $CFG->wwwroot . "/blocks/classmanager/students.php?category=";
+                    $enrolleduserscell .= $categoryid . "&filter=" . $class->id . "\">" . $studentsnum . " ";
+                    $enrolleduserscell .= "</a>";
                 }
                 $c .= "<tr>";
-                $c .= "<td>" . $class->name . "</td>";
-                $c .= "<td><a href=\"" . $CFG->wwwroot . "/blocks/classmanager/editclass.php?category=" . $categoryid;
-                $c .= "&classid=" . $class->id . "\">" . get_string('edit', 'block_classmanager') . "</a></td>";
-                $c .= "<td>" . $studentstable . "</td>";
+                $c .= "<td> <a href=\"" . $CFG->wwwroot . "/blocks/classmanager/editclass.php?category=" . $categoryid;
+                $c .= "&classid=" . $class->id . "\">" . $class->name. "</a></td>";
+                $c .= "<td style=\"text-align:right\">" . $enrolleduserscell . "</td>";
                 $c .= "</tr>";
             }
             $c .= "</table>";
