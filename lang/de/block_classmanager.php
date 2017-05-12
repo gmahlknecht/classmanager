@@ -23,10 +23,10 @@
  */
 
 $string['deleteusers'] = 'Anwender l&ouml;schen';
-$string['deleteusersdescription'] = 'Hier k&ouml;nnen sie die Nutzer ihrer Schule l&ouml;schen';
-$string['deleteuserschoosecohort'] = 'W&auml;hlen sie die Nutzergruppe';
+$string['deleteusersdescription'] = 'Hier k&ouml;nnen sie alle Anwender einer Klasse l&ouml;schen.';
+$string['deleteuserschoosecohort'] = 'W&auml;hlen sie die Nutzergruppe: ';
 $string['deleteusersdeletelink'] = 'Alle Nutzer dieser Klasse l&ouml;schen';
-$string['deleteuserspagetitle'] = 'Nutzer l&ouml;schen';
+$string['deleteuserspagetitle'] = 'Anwender l&ouml;schen';
 $string['deleteusersmanydescription'] = 'Alle Nutzer einer Klasse l&ouml;schen';
 $string['pluginname'] = 'Class Manager';
 $string['adminpagetitle'] = 'Administration der Klassen und Schulen';

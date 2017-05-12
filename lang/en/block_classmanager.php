@@ -23,8 +23,8 @@
  */
 
 $string['deleteusers'] = 'Delete Users';
-$string['deleteusersdescription'] = 'Here you can delete users';
-$string['deleteuserschoosecohort'] = 'Select the class of the users to delete';
+$string['deleteusersdescription'] = 'Here you can delete all users belonging to the same class!';
+$string['deleteuserschoosecohort'] = 'Select the class of the users to delete: ';
 $string['deleteusersdeletelink'] = 'Delete all users of this class';
 $string['deleteuserspagetitle'] = 'Delete users';
 $string['deleteusersmanydescription'] = 'Delete multiple users of a group';
