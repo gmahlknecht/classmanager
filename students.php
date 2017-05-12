@@ -48,8 +48,8 @@ if (! filter_has_var(INPUT_GET, 'category') and ! filter_has_var(INPUT_POST, 'ca
         $school = $DB->get_record('course_categories', array (
                 'id' => $categoryid
         ));
-        $navbardesturl = new moodle_url($CFG->wwwroot . '/blocks/classmanager/admin.php?category=' . $categoryid);
-        $PAGE->navbar->add(get_string('manage', 'block_classmanager') . ' ' . $school->name, $navbardesturl);
+        $navbarmanageschool = new moodle_url($CFG->wwwroot . '/blocks/classmanager/admin.php?category=' . $categoryid);
+        $PAGE->navbar->add(get_string('manage', 'block_classmanager') . ' ' . $school->name, $navbarmanageschool);
         $PAGE->navbar->add(get_string('managestudents', 'block_classmanager'));
         $c .= "<h5><a href=\"" . $CFG->wwwroot . "/blocks/classmanager/editstudent.php?category=";
         $c .= $categoryid . "&userid=0\">" . get_string('createnewuser', 'block_classmanager') . "</a></h5>";
