@@ -243,9 +243,12 @@ if (! filter_has_var(INPUT_GET, 'category') and ! filter_has_var(INPUT_POST, 'ca
                 $deletelink .= "if (answer){";
                 $deletelink .= "window.location = '" . $CFG->wwwroot . "/blocks/classmanager/students.php?action=DELETE&userid=";
                 $deletelink .= $userid . "&category=" . $categoryid . "';}\">" . get_string('delete') . "</a>";
-                $backlink = "<a href=\"" . $CFG->wwwroot . "/blocks/classmanager/students.php?category=";
+                $openuserlink = "<a href=\"" . $CFG->wwwroot . "/user/profile.php?id=";
+		$openuserlink .= $userid ."\">...User... </a>";
+		$backlink = "<a href=\"" . $CFG->wwwroot . "/blocks/classmanager/students.php?category=";
                 $backlink .= $categoryid . "\">" . get_string('back') . "</a>";
                 $c .= "<tr><td></td><td>".$deletelink."</td></tr>";
+                $c .= "<tr><td></td><td>".$openuserlink."</td></tr>";
                 $c .= "<tr><td></td><td>".$backlink."</td></tr>";
                 $c .= "</table></form>";
             } else {

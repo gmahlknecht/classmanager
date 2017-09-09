@@ -107,9 +107,8 @@ if (! isset($_GET['category']) and ! isset($_POST['category'])) {
                         $insertuser->mnethostid = 1;
                         $insertuser->lang = 'de';
                         // Test if user already exists
-                        // somewhere here is an error!
-                        $olduser = $DB->get_record('user', array (
-                                'username' => $insertuser->email
+			$olduser = $DB->get_record('user', array (
+                                'username' => $insertuser->username
                         ));
                         if (is_object($olduser)) {
                             $c .= "<b><font color=\"green\">" . get_string('useralreadyexists', 'block_classmanager') . ": ";

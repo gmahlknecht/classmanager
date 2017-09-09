@@ -57,7 +57,7 @@ if (! filter_has_var(INPUT_GET, 'category') and ! filter_has_var(INPUT_POST, 'ca
             // TODO: check if needed, think that we removed delete capability from students list!
             $userid = filter_input(INPUT_GET, 'userid', FILTER_SANITIZE_NUMBER_INT);
             $sqlstring = 'SELECT u.id as userid, u.username, u.auth, u.firstname , u.lastname, u.id, c.id as classe, ';
-            $sqlstring .= 'c.idnumber as classname, u.email, u.lastlogin ';
+            $sqlstring .= 'c.idnumber as classname, u.email, u.currentlogin ';
             $sqlstring .= 'FROM ' . $CFG->prefix . 'user u, ' . $CFG->prefix . 'cohort_members m, ' . $CFG->prefix . 'cohort c ';
             $sqlstring .= 'WHERE u.id = m.userid ';
             $sqlstring .= 'AND m.cohortid = c.id ';
@@ -99,7 +99,7 @@ if (! filter_has_var(INPUT_GET, 'category') and ! filter_has_var(INPUT_POST, 'ca
         if (filter_has_var(INPUT_GET, 'filter')) {
             // Filter by class id!
             $sqlstring = 'SELECT u.id, u.firstname , u.lastname, c.id as classe, c.idnumber as classname, ';
-            $sqlstring .= ' u.lastlogin ';
+            $sqlstring .= ' u.currentlogin ';
             $sqlstring .= 'FROM ' . $CFG->prefix . 'user u, ' . $CFG->prefix . 'cohort_members m, ';
             $sqlstring .= $CFG->prefix . 'cohort c ';
             $sqlstring .= 'WHERE u.id = m.userid AND m.cohortid = c.id ';
@@ -110,7 +110,7 @@ if (! filter_has_var(INPUT_GET, 'category') and ! filter_has_var(INPUT_POST, 'ca
         } else {
             // Without Class id filter!
             $sqlstring = 'SELECT u.id, u.firstname , u.lastname, c.id as classe, c.idnumber as classname, ';
-            $sqlstring .= ' u.lastlogin ';
+            $sqlstring .= ' u.currentlogin ';
             $sqlstring .= 'FROM ' . $CFG->prefix . 'user u, ' . $CFG->prefix . 'cohort_members m, ';
             $sqlstring .= $CFG->prefix . 'cohort c ';
             $sqlstring .= 'WHERE u.id = m.userid AND m.cohortid = c.id AND c.contextid=? ';
@@ -140,8 +140,8 @@ if (! filter_has_var(INPUT_GET, 'category') and ! filter_has_var(INPUT_POST, 'ca
                 $c .= "</a> </td>";
                 $c .= "<td>" . $user->classname . "</td>";
                 $lastlog = "never logged in";
-                if ($user->lastlogin != 0) {
-                    $lastlog = date("Y-m-d", $user->lastlogin);
+                if ($user->currentlogin != 0) {
+                    $lastlog = date("Y-m-d", $user->currentlogin);
                 }
                 $c .= "<td>" . $lastlog . "</td>";
                 $count ++;
